@@ -19,25 +19,23 @@ public class LightningOrb extends BaseSpell implements Upgradable{
     private static final double BASE_CAST_TIME = 2;
     private static final double ZAP_RANGE = 50;
 
-    private static final String imageUrl = "LightningOrb.png";
+    private static final String imageUrl = "lighting_orb.png";
 
     public LightningOrb(Vector2D position, Races races) {
         super("LightningOrb", imageUrl, position, races);
-        cast();
+        updateSprite();
     }
 
     public LightningOrb(Vector2D position, Empower empower, Races races) {
         super("LightningOrb", imageUrl, position, races);
         upgrade(empower);
-        cast();
     }
 
     private void upgrade(Empower empower){
 
     }
     public void cast() {
-        ImageView LightningOrb = new ImageView(new Image("LightningOrb.png"));
-        LightningOrb.setVisible(false);
+        ImageView LightningOrb = getImageView();
 
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(
