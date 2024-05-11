@@ -1,5 +1,6 @@
 package component.spell;
 
+import component.Base;
 import component.Races;
 import javafx.animation.Timeline;
 import util.Vector2D;
@@ -7,31 +8,12 @@ import util.Vector2D;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class BaseSpell {
-    private String name;
-    private Vector2D position;
+public abstract class BaseSpell extends Base {
     private Races races;
 
-    public BaseSpell(String name, Vector2D position, Races races) {
-        this.name = name;
-        this.position = position;
-        this.races = races;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Vector2D getPosition() {
-        return position;
-    }
-
-    public void setPosition(Vector2D position) {
-        this.position = position;
+    public BaseSpell(String name, String imageUrl, Vector2D position, Races races) {
+        super(name, imageUrl, position);
+        setRaces(races);
     }
 
     public Races getRaces() {
@@ -41,4 +23,6 @@ public class BaseSpell {
     public void setRaces(Races races) {
         this.races = races;
     }
+
+    public void cast(){};
 }

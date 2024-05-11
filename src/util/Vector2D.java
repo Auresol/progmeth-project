@@ -1,11 +1,14 @@
 package util;
 
+import setting.Config;
+
 public class Vector2D {
     public static final Vector2D ZERO = new Vector2D(0,0);
     public static final Vector2D UP = new Vector2D(0,-1);
     public static final Vector2D DOWN = new Vector2D(0,1);
     public static final Vector2D RIGHT = new Vector2D(1, 0);
     public static final Vector2D LEFT = new Vector2D(-1,0);
+    public static Vector2D MID_SCREEN = new Vector2D(Config.width/2, Config.height/2);
     private double x;
     private double y;
 
@@ -28,6 +31,9 @@ public class Vector2D {
     }
     public Vector2D subtract(double x, double y){
         return new Vector2D(this.x - x, this.y - y);
+    }
+    public Vector2D multiply(double mul){
+        return new Vector2D(this.x * mul, this.y * mul);
     }
     public double getSize(){
         return Math.sqrt(x*x + y*y);

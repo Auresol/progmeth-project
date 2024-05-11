@@ -1,36 +1,35 @@
 package graphic;
 
+import component.Base;
 import component.Races;
-import component.Render;
 import control.MainControl;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import util.Vector2D;
+import setting.Config;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainRender extends Pane {
 
     private static MainControl mainControl;
-    private static ArrayList<Object> terranUnits;
+    private static ArrayList<Base> terranEntities;
+    private static MainRender instance;
 
-    public MainRender(double width, double height) {
+    public MainRender() {
 
         mainControl = MainControl.getInstance();
-        terranUnits = mainControl.getUnits().get(Races.TERRAN);
+        ArrayList<Base> terranEntities = mainControl.getEntities().get(Races.TERRAN);
 
         this.getChildren().add(mainControl.getPlayer().getImageView());
-        for(Object render : terranUnits){
-            if(render instanceof Render){
-                this.getChildren().add(((Render) render).getImageView());
-            }
+        for(Base base : terranEntities){
+            this.getChildren().add(base.getImageView());
+
         }
+
+        //KeyInputControl keyInputControl = KeyInputControl.getInstance();
+        //this.setOnKeyPressed(KeyInputControl.getInstance());
+        //this.setOnKeyReleased(keyInputControl);
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -41,13 +40,20 @@ public class MainRender extends Pane {
             }
         },0,100);
     }
+    public static MainRender getInstance(){
+        if(instance == null){
+            instance = new MainRender();
+        }
+        return instance;
+    }
 
     public static void update(){
         mainControl.getPlayer().updateSprite();
-        for(Object render : terranUnits){
-            if(render instanceof Render){
-                ((Render) render).updateSprite();
-            }
+        if(terranEntities == null){
+            return;
+        }
+        for(Base base : terranEntities){
+            base.updateSprite();
         }
     }
 }

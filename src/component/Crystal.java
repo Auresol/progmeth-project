@@ -3,43 +3,15 @@ package component;
 import javafx.scene.image.ImageView;
 import util.Vector2D;
 
-public class Crystal implements Render{
-    private ImageView imageView;
-    private Vector2D position;
-    private double health = 100;
-    private double maxHealth = 100;
+public class Crystal extends BaseUnit{
 
-    public Crystal(Vector2D position) {
+    private static final String name = "Crystal";
+    private static final String imageUrl = "crystal.png";
+    private static final Vector2D position = Vector2D.ZERO;
+    private static final double maxHealth = 100;
 
-        this.position = position;
-        try {
-            imageView = new ImageView(ClassLoader.getSystemResources("crystal.png").toString());
-        }catch (Exception e){};
-
-    }
-
-    public double getHealth() {
-        return health;
-    }
-
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
-    public double getMaxHealth() {
-        return maxHealth;
-    }
-
-    public void setMaxHealth(double maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
-    public void updateSprite(){
-        imageView.setLayoutX(position.getX());
-        imageView.setLayoutY(position.getY());
-    }
-    public ImageView getImageView() {
-        return imageView;
+    public Crystal() {
+        super(name, imageUrl, position, maxHealth, 0, Vector2D.ZERO);
     }
 
 }

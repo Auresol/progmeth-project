@@ -2,26 +2,31 @@ package control;
 
 import component.*;
 
+import component.spell.BaseSpell;
+import component.spell.Fireball;
+import component.spell.LightningOrb;
+import graphic.MainRender;
 import util.Vector2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 // All key event is
 public class MainControl {
     private static MainControl instance;
+    private KeyInputControl keyInputControl;
     private Player player;
     private Crystal crystal;
-    private HashMap<Races, ArrayList<Object>> units;
+    private BaseSpell selectedSpell;
+    private HashMap<Races, ArrayList<Base>> entities;
 
     public MainControl() {
-        this.player = new Player(Vector2D.ZERO,1);
-        this.crystal = new Crystal(Vector2D.ZERO);
-        units = new HashMap<>();
-        units.put(Races.TERRAN, new ArrayList<>());
-        units.put(Races.ZERG, new ArrayList<>());
-        units.put(Races.PROTOSS, new ArrayList<>());
+        this.player = new Player(Vector2D.MID_SCREEN);
+        //this.crystal = new Crystal();
+        entities = new HashMap<>();
+        entities.put(Races.TERRAN, new ArrayList<>());
+        entities.put(Races.ZERG, new ArrayList<>());
+        entities.put(Races.PROTOSS, new ArrayList<>());
     }
 
 //    public MainControl(Player player, Crystal crystal) {
@@ -35,6 +40,16 @@ public class MainControl {
         }
         return instance;
     }
+    public void useSpell(Vector2D position){
+        selectedSpell = new LightningOrb(position, Races.TERRAN);
+        addEntity(Races.TERRAN,selectedSpell);
+        selectedSpell.cast();
+    }
+    public void addEntity(Races races, Base entity){
+        entities.get(races).add(entity);
+        MainRender.getInstance().getChildren().add(entity.getImageView());
+
+    }
 
     public Crystal getCrystal() {
         return crystal;
@@ -44,8 +59,8 @@ public class MainControl {
         this.crystal = crystal;
     }
 
-    public HashMap<Races, ArrayList<Object>> getUnits() {
-        return units;
+    public HashMap<Races, ArrayList<Base>> getEntities() {
+        return entities;
     }
 
     public Player getPlayer() {
@@ -55,4 +70,5 @@ public class MainControl {
     public void setPlayer(Player player) {
         this.player = player;
     }
+
 }
