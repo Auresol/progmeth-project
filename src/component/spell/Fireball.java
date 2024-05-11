@@ -1,5 +1,7 @@
 package component.spell;
 
+import component.Base;
+import component.BaseUnit;
 import component.Races;
 import component.terran.BaseTerranEnemy;
 import control.MainControl;
@@ -12,29 +14,28 @@ import util.Vector2D;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
-public class Fireball extends BaseSpell implements Upgradable{
+public class Fireball extends BaseSpell implements Upgradable {
     private static final double BASE_DAMAGE = 10;
     private static final double BASE_CAST_TIME = 2;
+    private static String imageUrl = "fireball.png";
     public Fireball(Vector2D position, Races races) {
-        super("FireBall",position,races);
-        cast();
+        super("FireBall",imageUrl,position,races);
+        updateSprite();
     }
     public Fireball(Vector2D position, Empower empower,Races races) {
-        super("FireBall",position,races);
+        super("FireBall",imageUrl,position,races);
         upgrade(empower);
-        cast();
 
     }
     private void upgrade(Empower empower){
 
     }
 
-    private void cast() {
-        ImageView fireball = new ImageView(new Image("fireball.png"));
-        fireball.setVisible(false);
+    public void cast() {
+        //System.out.println("Start cast");
+        ImageView fireball = getImageView();
 
         Timeline timeline = new Timeline();
         timeline.getKeyFrames().addAll(
@@ -44,9 +45,9 @@ public class Fireball extends BaseSpell implements Upgradable{
         );
 
         timeline.setOnFinished(e -> {
-            ArrayList<Object> units = MainControl.getInstance().getUnits().get(this.getRaces());
-            for(Object unit : units){
-                if(unit instanceof BaseTerranEnemy castUnit){
+            ArrayList<Base> entities = MainControl.getInstance().getEntities().get(this.getRaces());
+            for(Base base : entities){
+                if(base instanceof BaseUnit castUnit){
                     castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
                 }
             }
