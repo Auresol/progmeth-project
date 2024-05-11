@@ -56,9 +56,8 @@ public class LightningOrb extends BaseSpell implements Upgradable{
     private void zapEnemiesInRange() {
         ArrayList<Object> units = MainControl.getInstance().getUnits().get(this.getRaces());
         for (Object unit : units) {
-            if (unit instanceof BaseTerranEnemy) {
-                BaseTerranEnemy castUnit = (BaseTerranEnemy) unit;
-                if (this.getPosition().distanceTo(castUnit.getPosition()) <= ZAP_RANGE) {
+            if (unit instanceof BaseTerranEnemy castUnit) {
+                if (this.getPosition().subtract(castUnit.getPosition()).getSize() <= ZAP_RANGE) { //distanceTo not yet implement
                     castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
                 }
             }
