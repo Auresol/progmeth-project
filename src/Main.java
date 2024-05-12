@@ -1,21 +1,18 @@
 import control.KeyInputControl;
 import control.MainControl;
 import control.MouseInputControl;
+import graphic.GameRender;
 import graphic.MainRender;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import setting.Config;
 
-import java.security.Key;
-
 public class Main extends Application {
-    private static MainRender mainRender;
+    private static GameRender gameRender;
+    private static Scene scene;
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Set window size
@@ -29,10 +26,11 @@ public class Main extends Application {
         stage.setHeight(Config.height);
 
         // Create the scene and set it on the stage
-        Scene scene = new Scene(MainRender.getInstance());
+        MainControl.getInstance();
+        scene = new Scene(GameRender.getInstance());
         stage.setScene(scene);
 
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, KeyInputControl.getInstance());
+        scene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
         scene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
         //scene.setOnKeyPressed(this::handle);
 

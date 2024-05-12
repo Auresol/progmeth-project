@@ -1,25 +1,38 @@
 package component;
 
+import control.GameControl;
+import javafx.scene.Group;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.TriangleMesh;
 import util.Vector2D;
-
-import java.util.HexFormat;
 
 public class BaseUnit extends Base{
     private double maxHealth;
     private double health;
-    private double speed;
-    private Vector2D direction;
+    private Rectangle healthBar = new Rectangle(50, 10, Color.RED);
+    private double maxAttackRange;
+    private double minAttackRange;
+    private double damage;
+    private double attackFrequency;
+    private boolean attackFlag = false;
+    private BaseUnit target;
+    private Thread attackThread;
 
-    public BaseUnit(String name, String imageUrl, Vector2D position, double maxHealth, double speed, Vector2D direction) {
-        super(name, imageUrl,position);
+    public BaseUnit(String name, String imageUrl, Vector2D position, double maxHealth, double speed, double imageScale, double minAttackRange, double maxAttackRange, double damage, double attackFrequency, Races races) {
+        super(name, imageUrl,position, speed, imageScale, races);
         setMaxHealth(maxHealth);
         setHealth(maxHealth);
-        setSpeed(speed);
-        setDirection(direction);
-    }
+        setMinAttackRange(minAttackRange);
+        setMaxAttackRange(maxAttackRange);
+        setDamage(damage);
+        setAttackFrequency(attackFrequency);
 
-    public void step(double time){
-        setPosition(getPosition().add(getDirection().multiply(speed * time)));
+        healthBar.setLayoutX(-25);
+        healthBar.setLayoutY(-this.getImage().getHeight()*getImageScale()/2 - 10);
+        getRenderGroup().getChildren().add(healthBar);
+
+        constructAttackThread();
     }
 
     public double getMaxHealth() {
@@ -35,22 +48,104 @@ public class BaseUnit extends Base{
     }
 
     public void setHealth(double health) {
-        this.health = health;
+        this.health = Math.min(maxHealth,health);
     }
 
-    public double getSpeed() {
-        return speed;
+    public boolean isDestroyed(){
+        return health <= 0;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
+    public double getMaxAttackRange() {
+        return maxAttackRange;
     }
 
-    public Vector2D getDirection() {
-        return direction;
+    public void setMaxAttackRange(double maxAttackRange) {
+        this.maxAttackRange = maxAttackRange;
     }
 
-    public void setDirection(Vector2D direction) {
-        this.direction = direction;
+    public double getMinAttackRange() {
+        return minAttackRange;
     }
+
+    public void setMinAttackRange(double minAttackRange) {
+        this.minAttackRange = minAttackRange;
+    }
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
+    public double getAttackFrequency() {
+        return attackFrequency;
+    }
+
+    public void setAttackFrequency(double attackFrequency) {
+        this.attackFrequency = attackFrequency;
+    }
+
+    public BaseUnit getTarget() {
+        return target;
+    }
+
+    public void setTarget(BaseUnit target) {
+        this.target = target;
+    }
+
+    @Override
+    public void updateSprite(){
+        getRenderGroup().setLayoutX(getPosition().getX());
+        getRenderGroup().setLayoutY(getPosition().getY());
+        healthBar.setWidth(50*(health/maxHealth));
+    }
+
+    public void step(double time){
+
+        double distanceFromTarget = Double.MAX_VALUE;
+
+        if(target != null){
+            setDirection(target.getPosition().subtract(getPosition()).getNormalize());
+            distanceFromTarget = target.getPosition().subtract(getPosition()).getSize();
+        }
+
+
+        if(distanceFromTarget > maxAttackRange){
+            attackFlag = false;
+            super.step(time);
+            return;
+        }
+
+        if(distanceFromTarget < minAttackRange){
+            setDirection(getDirection().reverse());
+            super.step(time);
+        }
+
+        if(!attackFlag) {
+            constructAttackThread();
+            attackFlag = true;
+            attackThread.start();
+        }
+    }
+
+    private void constructAttackThread(){
+        attackThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (attackFlag) {
+                    try {
+                        target.setHealth(target.getHealth() - damage);
+                        Thread.sleep((long) (attackFrequency * 1000));
+
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+    }
+
+
 }
