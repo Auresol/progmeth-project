@@ -1,0 +1,58 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"353657b0-4dee-4994-9f67-dc2288ed037d\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/Main.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/Main.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/Crystal.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/Crystal.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/Player.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/Player.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/Render.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/spell/BaseSpell.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/spell/BaseSpell.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/spell/Fireball.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/spell/Fireball.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/spell/LightningOrb.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/spell/LightningOrb.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/component/terran/Solider.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/component/terran/Solider.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/control/MainControl.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/control/MainControl.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/graphic/MainRender.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/graphic/MainRender.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/util/Vector2D.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/util/Vector2D.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;customColor&quot;: &quot;&quot;,\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2gHwlcPTlHGVcf70X5IQ699Gi1x\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.Main.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;/home/auresol/IdeaProjects/vampire&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"vampire\" />\r\n      <option name=\"VM_PARAMETERS\" value=\"--module-path $USER_HOME$/Downloads/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-20.0.2-azul-20.0.2-4caba194b151-ffffd64d\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"353657b0-4dee-4994-9f67-dc2288ed037d\" name=\"Changes\" comment=\"\" />\r\n      <created>1715367963841</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1715367963841</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2a24d6d9207e942e62b61258b5b3597f6b71e9dd)
++++ b/.idea/workspace.xml	(date 1715526311857)
+@@ -5,20 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/Crystal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Crystal.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Player.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/Render.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/spell/BaseSpell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/BaseSpell.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/spell/Fireball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Fireball.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/component/terran/Solider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Solider.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/control/MainControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MainControl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/graphic/MainRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/MainRender.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/util/Vector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Vector2D.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -51,7 +38,7 @@
+     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+     &quot;last_opened_file_path&quot;: &quot;/home/auresol/IdeaProjects/vampire&quot;,
+     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+@@ -63,7 +50,7 @@
+     <configuration name="Main" type="Application" factoryName="Application">
+       <option name="MAIN_CLASS_NAME" value="Main" />
+       <module name="vampire" />
+-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics" />
++      <option name="VM_PARAMETERS" value="--module-path D:/download/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib --add-modules javafx.controls,javafx.fxml" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -72,7 +59,7 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-ffffd64d" />
++        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-eb49e076" />
+       </set>
+     </attachedChunks>
+   </component>
