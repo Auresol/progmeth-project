@@ -35,8 +35,13 @@ public class Medic extends BaseTerranEnemy{
                             Base entity = entities.get(i);
                             if (entity instanceof BaseTerranEnemy) {
                                 BaseTerranEnemy castUnit = ((BaseTerranEnemy) entity);
-                                if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_HEAL_RANGE) { //distanceTo not yet implement
-                                    castUnit.setHealth(castUnit.getHealth() + BASE_HEAL);
+                                if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_HEAL_RANGE)
+                                {
+                                    if (castUnit instanceof Thor){
+                                        castUnit.setHealth(castUnit.getHealth() + 2 * BASE_HEAL);
+                                    }else {
+                                        castUnit.setHealth(castUnit.getHealth() + BASE_HEAL);
+                                    }
                                 }
                             }
                         }
