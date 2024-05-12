@@ -22,6 +22,6 @@ public class MouseInputControl implements EventHandler<MouseEvent> {
 
         //System.out.println(clickX + ", " + clickY);
 
-        MainControl.getInstance().useSpell(new Vector2D(clickX,clickY));
+        GameControl.getInstance().useSpell(new Vector2D(clickX,clickY));
     }
 }

@@ -2,7 +2,10 @@ package util;
 
 import setting.Config;
 
+import java.util.Random;
+
 public class Vector2D {
+    private static final Random random = new Random();
     public static final Vector2D ZERO = new Vector2D(0,0);
     public static final Vector2D UP = new Vector2D(0,-1);
     public static final Vector2D DOWN = new Vector2D(0,1);
@@ -11,6 +14,11 @@ public class Vector2D {
     public static Vector2D MID_SCREEN = new Vector2D(Config.width/2, Config.height/2);
     private double x;
     private double y;
+
+    public Vector2D(){
+        this.x = Config.width * random.nextFloat();
+        this.y = Config.height * random.nextFloat();
+    }
 
     public Vector2D(double x, double y) {
         this.x = x;
@@ -34,6 +42,9 @@ public class Vector2D {
     }
     public Vector2D multiply(double mul){
         return new Vector2D(this.x * mul, this.y * mul);
+    }
+    public Vector2D reverse(){
+        return new Vector2D(-this.x,-this.y);
     }
     public double getSize(){
         return Math.sqrt(x*x + y*y);

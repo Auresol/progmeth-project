@@ -10,28 +10,27 @@ import java.io.IOException;
 public class Player extends BaseUnit{
     public static final String imageUrl = "player.png";
     public static final double BASE_MAX_HEALTH = 100;
-    public static final double BASE_SPEED = 10;
+    public static final double BASE_SPEED = 100;
+    public static final double BASE_ATTACK_FREQUENCY = 1;
+    private static final double IMAGE_SCALE = 0.3;
+    private static final double BASE_DAMAGE = 2;
 
     public Player(Vector2D position){
-        super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, Vector2D.ZERO);
+        super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, BASE_ATTACK_FREQUENCY,Races.ALL);
 
     }
 
-    public void moveUp(){
-        setPosition(getPosition().add(0, -getSpeed()));
-        updateSprite();
-    }
-    public void moveDown(){
-        setPosition(getPosition().add(0, getSpeed()));
-        updateSprite();
-    }
-    public void moveLeft(){
-        setPosition(getPosition().add(-getSpeed(), 0));
-        updateSprite();
-    }
-    public void moveRight(){
-        setPosition(getPosition().add(getSpeed(),0));
-        updateSprite();
-    }
+//    public void moveUp(){
+//        setDirection(Vector2D.UP);
+//    }
+//    public void moveDown(){
+//        setDirection(Vector2D.DOWN);
+//    }
+//    public void moveLeft(){
+//        setDirection(Vector2D.LEFT);
+//    }
+//    public void moveRight(){
+//        setDirection(Vector2D.RIGHT);
+//    }
 
 }
