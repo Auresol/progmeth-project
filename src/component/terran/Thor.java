@@ -14,7 +14,7 @@ public class Thor extends BaseTerranEnemy{
     private static final double BASE_ATTACK_FREQUENCY = 1;
     private static final double IMAGE_SCALE = 1.5;
     public Thor(Vector2D position) {
-        super("Thor", "Thor.png", position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
+        super("Thor", "Thor.gif", position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getCrystal());
     }
 }
