@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/BaseUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/BaseUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/zerg/Baneling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Baneling.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

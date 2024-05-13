@@ -11,7 +11,8 @@ import java.util.ArrayList;
 
 public class Mutalisk extends BaseZergEnemy{
 
-    private static final double BASE_MAX_HEALTH = 2.5;
+    private static final double BASE_SPEED = 22.5;
+    private static final double BASE_MAX_HEALTH = 50;
     private static final double BASE_DAMAGE = 1.5;
     private static final double BASE_MIN_ATTACK_RANGE = 20;
     private static final double BASE_MAX_ATTACK_RANGE = 20;
@@ -19,7 +20,7 @@ public class Mutalisk extends BaseZergEnemy{
     private static final double IMAGE_SCALE = 0.21;
 
     public Mutalisk(Vector2D position) {
-        super("Mutalisk","Mutalisk.png", position, BASE_MAX_HEALTH,0, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
+        super("Mutalisk","Mutalisk.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getPlayer());
         applyEffect();
     }
