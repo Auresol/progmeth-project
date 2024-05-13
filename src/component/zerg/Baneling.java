@@ -52,6 +52,7 @@ public class Baneling extends BaseZergEnemy {
                                 }
                             }
                             setHealth(0);
+                            selfDelete();
                         }
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
