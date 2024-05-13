@@ -22,7 +22,7 @@ public class Disruptor extends BaseProtossEnemy{
     private static final double BASE_SLOW = 0.80;
 
     public Disruptor(Vector2D position) {
-        super("Disruptor","Disruptor.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN, BASE_SHIELD_COUNT);
+        super("Disruptor","Disruptor.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN, BASE_SHIELD_COUNT);
         setTarget(GameControl.getInstance().getCrystal());
         applyEffect();
     }
