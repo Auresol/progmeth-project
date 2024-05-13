@@ -34,7 +34,7 @@ public class Disruptor extends BaseProtossEnemy{
                 while(true) {
                     try {
                         if (getPosition().subtract(GameControl.getInstance().getPlayer().getPosition()).getSize() <= BASE_AURA_RANGE){
-                            GameControl.getInstance().getPlayer().setSpeed(GameControl.getInstance().getPlayer().getSpeed() * BASE_AURA_RANGE);
+                            GameControl.getInstance().getPlayer().setSpeed(GameControl.getInstance().getPlayer().getSpeed() * BASE_SLOW);
                         }
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
