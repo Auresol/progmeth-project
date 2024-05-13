@@ -20,7 +20,6 @@ public class Baneling extends BaseZergEnemy {
     public Baneling(Vector2D position) {
         super("Baneling", "Baneling.png", position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getCrystal());
-        updateSprite();
         applyEffect();
     }
 
