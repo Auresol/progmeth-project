@@ -1,7 +1,10 @@
 package control;
 
 import com.sun.tools.javac.Main;
+import graphic.GameRender;
+import graphic.MainRender;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import setting.Config;
 import util.Vector2D;
@@ -11,6 +14,7 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
     private static double sceneWidth;
     private static double sceneHeight;
     private boolean[] arrowKey = new boolean[]{false,false,false,false};
+    private boolean[] cameraRotateState = new boolean[]{false, false};
 
     public KeyInputControl(double sceneWidth, double sceneHeight) {
         KeyInputControl.sceneWidth = sceneWidth;
@@ -32,14 +36,34 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
         //System.out.println("Key : " + event.getEventType() + " , " + event.getCode());
 
         switch (event.getCode()){
-            case UP -> arrowKey[0] = setTarget;
-            case DOWN -> arrowKey[1] = setTarget;
-            case LEFT -> arrowKey[2] = setTarget;
-            case RIGHT -> arrowKey[3] = setTarget;
+            case W -> arrowKey[0] = setTarget;
+            case S -> arrowKey[1] = setTarget;
+            case A -> arrowKey[2] = setTarget;
+            case D -> arrowKey[3] = setTarget;
+            case Q, E -> rotateCameraHandler(event);
         }
 
         updateWalkDirection();
         //System.out.println("Key : " + event.getText());
+    }
+
+    private void rotateCameraHandler(KeyEvent event){
+        boolean isKeyPress = event.getEventType().equals(KeyEvent.KEY_PRESSED);
+        //System.out.println(event.getEventType().toString());
+        int arrayPos = event.getCode().equals(KeyCode.Q)? 0:1;
+
+        if(isKeyPress && !cameraRotateState[arrayPos]){
+            if(arrayPos == 0){
+                GameRender.setCameraTargetAngle(GameRender.getCameraTargetAngle() + 45);
+                GameRender.goToNextRaces();
+            }
+            if(arrayPos == 1){
+                GameRender.setCameraTargetAngle(GameRender.getCameraTargetAngle() - 45);
+                GameRender.goToPreviousRaces();
+            }
+        }
+
+        cameraRotateState[arrayPos] = isKeyPress;
     }
 
     private void updateWalkDirection(){
@@ -60,5 +84,7 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
         }
 
         GameControl.getInstance().getPlayer().setDirection(result);
+
+
     }
 }

@@ -24,7 +24,6 @@ public class Tornado extends BaseSpell implements Upgradable {
     private static String imageUrl = "tornado.png";
     public Tornado(Vector2D position, Races races) {
         super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
-        updateSprite();
         applyEffect();
     }
     public Tornado(Vector2D position, Empower empower,Races races) {

@@ -17,7 +17,6 @@ public class Solider extends BaseTerranEnemy {
     public Solider(Vector2D position) {
         super("Solider","solider.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getPlayer());
-        updateSprite();
     }
 
 }
