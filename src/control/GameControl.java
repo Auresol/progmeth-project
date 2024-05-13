@@ -1,15 +1,14 @@
 package control;
 
+import com.sun.webkit.ThemeClient;
 import component.*;
 
-import component.spell.BaseSpell;
-import component.spell.Fireball;
 import component.zerg.Baneling;
 import component.terran.Medic;
 import component.terran.Solider;
-import component.zerg.Mutalisk;
 import graphic.GameRender;
 import javafx.application.Platform;
+import component.spell.*;
 import util.Vector2D;
 
 import java.util.ArrayList;
@@ -44,38 +43,41 @@ public class GameControl {
     }
 
     public void startGame(){
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //System.out.println("Update");
-                Vector2D initialPosition = new Vector2D();
-                Solider solider = new Solider(initialPosition);
-                solider.setDirection(crystal.getPosition().subtract(initialPosition));
-                addEntity(Races.TERRAN, solider);
+        Thread thread = new Thread(() -> {
+            try {
+                while(true) {
+                    //System.out.println("Update");
+                    Vector2D initialPosition = new Vector2D();
+                    Solider solider = new Solider(initialPosition);
+                    solider.setDirection(crystal.getPosition().subtract(initialPosition));
+                    addEntity(solider);
+                    solider.updateSprite();
 
-                initialPosition = new Vector2D();
-                Medic medic = new Medic(initialPosition);
-                medic.setDirection(crystal.getPosition().subtract(initialPosition));
-                addEntity(Races.TERRAN, medic);
+                    initialPosition = new Vector2D();
+                    Medic medic = new Medic(initialPosition);
+                    medic.setDirection(crystal.getPosition().subtract(initialPosition));
+                    addEntity(medic);
+                    medic.updateSprite();
 
 //                initialPosition = new Vector2D();
 //                Thor thor = new Thor(initialPosition);
 //                medic.setDirection(crystal.getPosition().subtract(initialPosition));
 //                addEntity(Races.TERRAN, thor);
 
-                initialPosition = new Vector2D();
-                Baneling baneling = new Baneling(initialPosition);
-                medic.setDirection(crystal.getPosition().subtract(initialPosition));
-                addEntity(Races.ZERG, baneling);
+                    initialPosition = new Vector2D();
+                    Baneling baneling = new Baneling(initialPosition);
+                    medic.setDirection(crystal.getPosition().subtract(initialPosition));
+                    addEntity(baneling);
+                    baneling.updateSprite();
 
-                initialPosition = new Vector2D();
-                Mutalisk mutalisk = new Mutalisk(initialPosition);
-                medic.setDirection(crystal.getPosition().subtract(initialPosition));
-                addEntity(Races.ZERG, mutalisk);
-
+                    Thread.sleep(2000);
+                }
+            }catch (Exception e){
+                System.out.println(e);
             }
-        },0,4000);
+        });
+
+        thread.start();
     }
 
     public static GameControl getInstance(){
@@ -84,21 +86,43 @@ public class GameControl {
         }
         return instance;
     }
-    public void useSpell(Vector2D mousePosition){
-        selectedSpell = new Fireball(mousePosition, Races.TERRAN);
-        //selectedSpell.setDirection(mousePosition.subtract(getPlayer().getPosition()).getNormalize());
-        addEntity(Races.TERRAN,selectedSpell);
-        selectedSpell.cast();
+    public void useSpell(Vector2D mousePosition, Spell spell){
+
+        switch (spell){
+            case FIREBALL -> addEntity(new Fireball(mousePosition, GameRender.getCurrentRace()));
+            case TORNADO -> addEntity(new Tornado(mousePosition, GameRender.getCurrentRace()));
+            case LIGHTING_ORB -> addEntity(new LightningOrb(mousePosition, GameRender.getCurrentRace()));
+        }
+//
+//        selectedSpell = new Fireball(mousePosition, GameRender.getCurrentRace());
+//        //selectedSpell.setDirection(mousePosition.subtract(getPlayer().getPosition()).getNormalize());
+//        addEntity(selectedSpell);
+//        selectedSpell.cast();
     }
 
 
-    public void addEntity(Races races, Base entity){
+    public void addEntity(Base entity){
+        Races races = entity.getRaces();
         entities.get(races).add(entity);
         Platform.runLater(() -> {
             GameRender.getInstance().getChildren().add(entity.getRenderGroup());
-            GameRender.getInstance().getChildren().add(entity.getInvisibleRenderGroup());
+            if(entity instanceof BaseUnit) {
+                GameRender.getInstance().getChildren().add(((BaseUnit)entity).getInvisibleRenderGroup());
+            }
         });
     }
+
+    public void removeEntity(Base entity){
+        Races races = entity.getRaces();
+        entities.get(races).remove(entity);
+        Platform.runLater(() -> {
+            GameRender.getInstance().getChildren().remove(entity.getRenderGroup());
+            if(entity instanceof BaseUnit) {
+                GameRender.getInstance().getChildren().remove(((BaseUnit)entity).getInvisibleRenderGroup());
+            }
+        });
+    }
+
 
     public Crystal getCrystal() {
         return crystal;

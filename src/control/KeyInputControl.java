@@ -1,6 +1,10 @@
 package control;
 
 import com.sun.tools.javac.Main;
+import component.Base;
+import component.spell.BaseSpell;
+import component.spell.Fireball;
+import component.spell.Spell;
 import graphic.GameRender;
 import graphic.MainRender;
 import javafx.event.EventHandler;
@@ -9,17 +13,23 @@ import javafx.scene.input.KeyEvent;
 import setting.Config;
 import util.Vector2D;
 
+import java.security.Key;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class KeyInputControl implements EventHandler<KeyEvent> {
     private static KeyInputControl instance;
     private static double sceneWidth;
     private static double sceneHeight;
     private boolean[] arrowKey = new boolean[]{false,false,false,false};
     private boolean[] cameraRotateState = new boolean[]{false, false};
+    private static boolean[] spellKeyboardLayoutState = new boolean[]{false,false,false,false};
+    private static KeyCode currentKeyToggle;
 
     public KeyInputControl(double sceneWidth, double sceneHeight) {
         KeyInputControl.sceneWidth = sceneWidth;
         KeyInputControl.sceneHeight = sceneHeight;
-
     }
     public static KeyInputControl getInstance(){
         if(instance == null){
@@ -40,8 +50,16 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
             case S -> arrowKey[1] = setTarget;
             case A -> arrowKey[2] = setTarget;
             case D -> arrowKey[3] = setTarget;
-            case Q, E -> rotateCameraHandler(event);
+            case Q -> rotateCameraHandler(event);
+            case E -> rotateCameraHandler(event);
+
+            case DIGIT1 -> spellKeyboardLayLoutHandler(event);
+            case DIGIT2 -> spellKeyboardLayLoutHandler(event);
+            case DIGIT3 -> spellKeyboardLayLoutHandler(event);
+            case DIGIT4 -> spellKeyboardLayLoutHandler(event);
         }
+
+        //System.out.println("Current key : " + currentKeyToggle);
 
         updateWalkDirection();
         //System.out.println("Key : " + event.getText());
@@ -66,6 +84,27 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
         cameraRotateState[arrayPos] = isKeyPress;
     }
 
+    private void spellKeyboardLayLoutHandler(KeyEvent event){
+        boolean isKeyPress = event.getEventType().equals(KeyEvent.KEY_PRESSED);
+        int arrayPos = 0;
+        switch (event.getCode()){
+            case DIGIT1 -> arrayPos = 0;
+            case DIGIT2 -> arrayPos = 1;
+            case DIGIT3 -> arrayPos = 2;
+            case DIGIT4 -> arrayPos = 3;
+        }
+
+        if(isKeyPress && !spellKeyboardLayoutState[arrayPos]){
+            if(currentKeyToggle == event.getCode()){
+                currentKeyToggle = KeyCode.UNDEFINED;
+            }else{
+                currentKeyToggle = event.getCode();
+            }
+        }
+
+        spellKeyboardLayoutState[arrayPos] = isKeyPress;
+    }
+
     private void updateWalkDirection(){
         //System.out.println(arrowKey[0] + " " + arrowKey[1] + " " + arrowKey[2] + " " + arrowKey[3]);
         Vector2D result = Vector2D.ZERO;
@@ -85,6 +124,13 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
 
         GameControl.getInstance().getPlayer().setDirection(result);
 
+    }
 
+    public static KeyCode getCurrentKeyToggle() {
+        return currentKeyToggle;
+    }
+
+    public static void setCurrentKeyToggle(KeyCode currentKeyToggle) {
+        KeyInputControl.currentKeyToggle = currentKeyToggle;
     }
 }
