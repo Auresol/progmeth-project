@@ -19,21 +19,48 @@ public class Baneling extends BaseTerranEnemy{
     public Baneling(Vector2D position) {
         super("Baneling", "Baneling.png", position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getCrystal());
-        Detonate();
         updateSprite();
+        applyEffect();
     }
 
-    public void Detonate(){
-        if (this.getHealth() < BASE_MAX_HEALTH/10 || this.isDestroyed() || getPosition().subtract(getTarget().getPosition()).getSize() <= BASE_MAX_ATTACK_RANGE){
-            ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
-            for (Base entity : entities) {
-                if (entity instanceof BaseUnit castUnit) {
-                    if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_MAX_ATTACK_RANGE) {
-                        castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
+//    public void Detonate(){
+//        if (this.getHealth() < BASE_MAX_HEALTH/10 || this.isDestroyed() || getPosition().subtract(getTarget().getPosition()).getSize() <= 50){
+//            ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
+//            for (Base entity : entities) {
+//                if (entity instanceof BaseUnit castUnit) {
+//                    if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_MAX_ATTACK_RANGE) {
+//                        castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
+//                    }
+//                }
+//            }
+//            this.selfDelete();
+//        }
+//    }
+    public void applyEffect(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        if (getHealth() < BASE_MAX_HEALTH/10 || isDestroyed() || getPosition().subtract(getTarget().getPosition()).getSize() <= 100){
+                            ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
+                            for (Base entity : entities) {
+                                if (entity instanceof BaseUnit castUnit) {
+                                    if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_MAX_ATTACK_RANGE) {
+                                        castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
+                                    }
+                                }
+                            }
+                            setHealth(0);
+                        }
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }
-            this.selfDelete();
-        }
+        });
+
+        thread.start();
     }
 }
