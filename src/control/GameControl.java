@@ -6,6 +6,7 @@ import component.spell.BaseSpell;
 import component.spell.Fireball;
 import component.spell.LightningOrb;
 import component.spell.Tornado;
+import component.terran.Baneling;
 import component.terran.Medic;
 import component.terran.Solider;
 import component.terran.Thor;
@@ -59,6 +60,11 @@ public class GameControl {
                 Thor thor = new Thor(initialPosition);
                 medic.setDirection(crystal.getPosition().subtract(initialPosition));
                 addEntity(Races.TERRAN, thor);
+
+                initialPosition = new Vector2D();
+                Baneling baneling = new Baneling(initialPosition);
+                medic.setDirection(crystal.getPosition().subtract(initialPosition));
+                addEntity(Races.TERRAN, baneling);
 
             }
         },0,4000);
