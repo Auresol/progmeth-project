@@ -7,6 +7,7 @@ import component.spell.Fireball;
 import component.zerg.Baneling;
 import component.terran.Medic;
 import component.terran.Solider;
+import component.zerg.Mutalisk;
 import graphic.GameRender;
 import javafx.application.Platform;
 import util.Vector2D;
@@ -67,6 +68,11 @@ public class GameControl {
                 Baneling baneling = new Baneling(initialPosition);
                 medic.setDirection(crystal.getPosition().subtract(initialPosition));
                 addEntity(Races.ZERG, baneling);
+
+                initialPosition = new Vector2D();
+                Mutalisk mutalisk = new Mutalisk(initialPosition);
+                medic.setDirection(crystal.getPosition().subtract(initialPosition));
+                addEntity(Races.ZERG, mutalisk);
 
             }
         },0,4000);
