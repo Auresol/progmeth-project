@@ -16,10 +16,10 @@ public class Medic extends BaseTerranEnemy{
     private static final double BASE_ATTACK_FREQUENCY = 1;
     private static final double BASE_HEAL = 2;
     private static final double BASE_HEAL_RANGE = 200;
-    private static final double IMAGE_SCALE = 0.15;
+    private static final double IMAGE_SCALE = 1.5;
 
     public Medic(Vector2D position) {
-        super("Medic","medic.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
+        super("Medic","Medic.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getCrystal());
         applyEffect();
     }
