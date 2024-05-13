@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
