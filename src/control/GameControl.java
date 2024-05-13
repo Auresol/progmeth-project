@@ -56,10 +56,10 @@ public class GameControl {
                 medic.setDirection(crystal.getPosition().subtract(initialPosition));
                 addEntity(Races.TERRAN, medic);
 
-                initialPosition = new Vector2D();
-                Thor thor = new Thor(initialPosition);
-                medic.setDirection(crystal.getPosition().subtract(initialPosition));
-                addEntity(Races.TERRAN, thor);
+//                initialPosition = new Vector2D();
+//                Thor thor = new Thor(initialPosition);
+//                medic.setDirection(crystal.getPosition().subtract(initialPosition));
+//                addEntity(Races.TERRAN, thor);
 
                 initialPosition = new Vector2D();
                 Baneling baneling = new Baneling(initialPosition);
