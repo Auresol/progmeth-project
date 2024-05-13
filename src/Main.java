@@ -10,14 +10,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import setting.Config;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+
 public class Main extends Application {
     private static GameRender gameRender;
-    private static Scene scene;
+    //private static Scene scene;
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Set window size
 
         // Create the main pane for rendering
+        gameRender = GameRender.getInstance();
 
         // Create the stage (main window)
         Stage stage = new Stage();
@@ -26,13 +30,14 @@ public class Main extends Application {
         stage.setHeight(Config.height);
 
         // Create the scene and set it on the stage
-        MainControl.getInstance();
-        scene = new Scene(GameRender.getInstance());
-        stage.setScene(scene);
 
-        scene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
-        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
-        //scene.setOnKeyPressed(this::handle);
+
+        //stage.setScene(new Scene(MainRender.load()))
+        Scene gameScene = new Scene(gameRender, Config.width, Config.width);
+        stage.setScene(gameScene);
+
+        gameScene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
+        gameScene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
 
 
         // Show the stage

@@ -7,20 +7,19 @@ import javafx.scene.layout.Pane;
 import setting.Config;
 import util.Vector2D;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Vector;
+import java.util.*;
 
 public class GameRender extends Pane {
 
     private static GameControl gameControl;
-    private static ArrayList<Base> terranEntities;
+    private static HashMap<Races, ArrayList<Base>> entities;
     private static GameRender instance;
     private static final double cameraTurnSpeed = 10;
-    private static Vector2D cameraPosition;
+    private static double cameraAngle = 0;
+    private static double cameraTargetAngle = 0;
     private static Player player;
     private static Crystal crystal;
+    private static Races currentRace = Races.TERRAN;
 
     public GameRender() {
 
@@ -28,15 +27,10 @@ public class GameRender extends Pane {
         player = gameControl.getPlayer();
         crystal = gameControl.getCrystal();
 
-        terranEntities = gameControl.getEntities().get(Races.TERRAN);
+        entities = gameControl.getEntities();
 
         this.getChildren().add(player.getRenderGroup());
         this.getChildren().add(crystal.getRenderGroup());
-
-        for(Base base : terranEntities){
-            this.getChildren().add(base.getRenderGroup());
-
-        }
 
         //KeyInputControl keyInputControl = KeyInputControl.getInstance();
         //this.setOnKeyPressed(KeyInputControl.getInstance());
@@ -59,46 +53,92 @@ public class GameRender extends Pane {
     }
 
     public static void update(){
-//        Vector2D target = player.getPosition().subtract(cameraPosition);
-//        player.setCameraMovementVector(player.getCameraMovementVector().add(target));
-        player.updateSprite();
-        player.step(Config.timeStep);
+        double rotateAngle = cameraTargetAngle - cameraAngle;
+//        updateEntity(player, rotateAngle);
+//        updateEntity(crystal, rotateAngle);
 
-//        target = crystal.getPosition().subtract(cameraPosition);
-//        crystal.setCameraMovementVector(crystal.getCameraMovementVector().add(target));
-        crystal.updateSprite();
+        for(Races race : Races.values()){
+            for(int i = 0;i < entities.get(race).size();i++){
+                Base entity = entities.get(race).get(i);
+                updateEntity(entity, rotateAngle);
+            }
+        }
 
-        if(terranEntities == null){
+        if(Math.abs(rotateAngle) > 1){
+            cameraAngle += rotateAngle * 0.1;
+            //System.out.println("WALK : " + rotateAngle);
+        }
+
+
+
+    }
+
+    private static void updateEntity(Base entity, double rotateAngle){
+
+        Races race = entity.getRaces();
+
+        if(entity.isDestroyed()){
+            entities.get(race).remove(entity);
+            Platform.runLater(() -> {
+                GameRender.getInstance().getChildren().remove(entity.getRenderGroup());
+                GameRender.getInstance().getChildren().remove(entity.getInvisibleRenderGroup());
+            });
             return;
         }
 
-        int i = 0;
-        while(i < terranEntities.size()){
-            Base base = terranEntities.get(i);
+        if(Math.abs(rotateAngle) > 1) {
 
-            if(base instanceof BaseUnit){
-                if(((BaseUnit)base).isDestroyed()){
-                    terranEntities.remove(i);
-                    Platform.runLater(() -> GameRender.getInstance().getChildren().remove(base.getRenderGroup()));
-                    continue;
-                }
-            }
+            // Cooler
+            Vector2D rotateVector = crystal.getPosition().subtract(entity.getPosition()).getNormalize().multiply(rotateAngle * 5).rotateBy90(false);
+            
+            //Vector2D rotateVector = crystal.getPosition().subtract(entity.getPosition()).multiply(rotateAngle * 0.1).rotateBy90(clockwise);
+//            if(entity instanceof Player){
+//                //System.out.println("In vector : " + crystal.getPosition().subtract(entity.getPosition()).getNormalize());
+//                System.out.println("Player rotate vector : " + rotateVector.toString());
+//            }
 
-            base.step(Config.timeStep);
-            base.updateSprite();
+            entity.setCameraMovementVector(rotateVector);
 
-            i++;
+        }else{
+            entity.setCameraMovementVector(Vector2D.ZERO);
+        }
+
+        entity.step(Config.timeStep);
+        entity.updateSprite(race == currentRace || currentRace == Races.ALL || race == Races.ALL);
+
+    }
+
+    public static double getCameraTargetAngle() {
+        return cameraTargetAngle;
+    }
+
+    public static void setCameraTargetAngle(double cameraTargetAngle) {
+        GameRender.cameraTargetAngle = cameraTargetAngle;
+    }
+
+    public static Races getCurrentRace() {
+        return currentRace;
+    }
+
+    public static void setCurrentRace(Races currentRace) {
+        GameRender.currentRace = currentRace;
+    }
+
+    public static void goToNextRaces(){
+        switch (currentRace){
+            case TERRAN -> setCurrentRace(Races.ZERG);
+            case ZERG -> setCurrentRace(Races.PROTOSS);
+            case PROTOSS -> setCurrentRace(Races.TERRAN);
         }
     }
 
-//    public static void computeCameraVector(Base entity){
-//        Vector2D cameraTarget = entity.getPosition().subtract(cameraPosition);
-//        Vector2D cameraRotatedVector =
-//    }
-//
-//    public static void rotateCamera(int state){
-//        if(state == -1){
-//            gameControl.getPlayer().setCameraMovementVector(cameraTurnSpeed);
-//        }
-//    }
+    public static void goToPreviousRaces(){
+        switch (currentRace){
+            case TERRAN -> setCurrentRace(Races.PROTOSS);
+            case ZERG -> setCurrentRace(Races.TERRAN);
+            case PROTOSS -> setCurrentRace(Races.ZERG);
+        }
+    }
+
+
 }

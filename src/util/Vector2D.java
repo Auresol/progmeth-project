@@ -46,11 +46,18 @@ public class Vector2D {
     public Vector2D reverse(){
         return new Vector2D(-this.x,-this.y);
     }
+    public Vector2D rotateBy90(boolean clockwise){
+        // Perform rotation based on angle
+        return new Vector2D(y, -x);
+    }
     public double getSize(){
         return Math.sqrt(x*x + y*y);
     }
     public Vector2D getNormalize(){
         double size = getSize();
+        if(size <= 0.001){
+            return Vector2D.ZERO;
+        }
         return new Vector2D(x/size,y/size);
     }
 

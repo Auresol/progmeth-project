@@ -16,21 +16,9 @@ public class Player extends BaseUnit{
     private static final double BASE_DAMAGE = 2;
 
     public Player(Vector2D position){
-        super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, BASE_ATTACK_FREQUENCY,Races.ALL);
+        super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, 0,Races.ALL);
 
     }
 
-//    public void moveUp(){
-//        setDirection(Vector2D.UP);
-//    }
-//    public void moveDown(){
-//        setDirection(Vector2D.DOWN);
-//    }
-//    public void moveLeft(){
-//        setDirection(Vector2D.LEFT);
-//    }
-//    public void moveRight(){
-//        setDirection(Vector2D.RIGHT);
-//    }
 
 }

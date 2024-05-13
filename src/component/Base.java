@@ -2,6 +2,7 @@ package component;
 
 import control.GameControl;
 import control.MainControl;
+import graphic.GameRender;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,9 +20,14 @@ public class Base {
     private Vector2D direction = Vector2D.ZERO;
     private Vector2D cameraMovementVector = Vector2D.ZERO;
     private Group renderGroup = new Group();
+    private Image invisibleImage;
+    private ImageView invisibleImageView;
+    private Group invisibleRenderGroup = new Group();
     private Circle redDot = new Circle(5, Color.RED);
     private double imageScale = 0.3;
     private Races races;
+    private boolean isDestroyed = false;
+    private boolean renderAsMainRace = false;
 
     public Base(String name, String imageUrl, Vector2D position, double speed, double imageScale, Races races) {
         setName(name);
@@ -32,20 +38,42 @@ public class Base {
         setRaces(races);
 
         renderGroup.getChildren().add(this.getImageView());
+        invisibleRenderGroup.getChildren().add(this.invisibleImageView);
         //renderGroup.getChildren().add(redDot);
     }
 
-    public void updateSprite(){
-        //System.out.println("UPDATE SPRITE");
+    public void updateSprite(boolean renderAsMainRace){
+
+//        if(this instanceof Player){
+//            System.out.println(renderAsMainRace);
+//        }
+
         renderGroup.setLayoutX(position.getX());
         renderGroup.setLayoutY(position.getY());
+
+        invisibleRenderGroup.setLayoutX(position.getX());
+        invisibleRenderGroup.setLayoutY(position.getY());
+
+        if(!this.renderAsMainRace && renderAsMainRace){
+            invisibleRenderGroup.setVisible(false);
+            renderGroup.setVisible(true);
+        }
+
+        if(this.renderAsMainRace && !renderAsMainRace){
+            invisibleRenderGroup.setVisible(true);
+            renderGroup.setVisible(false);
+        }
+
+        this.renderAsMainRace = renderAsMainRace;
+
+        //System.out.println("UPDATE SPRITE");
         //imageView.setLayoutY(position.getY());
     }
 
     public void step(double time){
         setPosition(getPosition()
-                .add(new Vector2D(getDirection().getX() * speed * time + getCameraMovementVector().getX() * time
-                        , getDirection().getY() * speed * time + getCameraMovementVector().getY() * time))
+                .add(new Vector2D(getDirection().getX() * speed * time + cameraMovementVector.getX() * time
+                        , getDirection().getY() * speed * time + cameraMovementVector.getY() * time))
         );
     }
 
@@ -78,6 +106,7 @@ public class Base {
     public void setImage(String imageUrl) {
         try {
             this.image = new Image(ClassLoader.getSystemResource(imageUrl).toString());
+            this.invisibleImage = new Image(ClassLoader.getSystemResource("glow.png").toString());
         }catch (Exception e){
             System.out.println("No " + imageUrl + " presented -> " + e);
         };
@@ -95,6 +124,19 @@ public class Base {
         imageView.setLayoutX(xOffset);
         imageView.setLayoutY(yOffset);
         //imageView.setLayoutX(-image.getWidth()/2);
+
+        invisibleImageView = new ImageView(invisibleImage);
+        invisibleImageView.setPreserveRatio(true);
+        invisibleImageView.setScaleX(0.05);
+        invisibleImageView.setScaleY(0.05);
+
+        // Calculate offsets for centering the scaled image
+        double invisibleXOffset = -invisibleImage.getWidth()/2;
+        double invisibleYOffset = -invisibleImage.getHeight()/2;
+
+        // Translate the image to center it
+        invisibleImageView.setLayoutX(invisibleXOffset);
+        invisibleImageView.setLayoutY(invisibleYOffset);
     }
 
     public ImageView getImageView() {
@@ -129,6 +171,10 @@ public class Base {
         return renderGroup;
     }
 
+    public Group getInvisibleRenderGroup() {
+        return invisibleRenderGroup;
+    }
+
     public void setRenderGroup(Group renderGroup) {
         this.renderGroup = renderGroup;
     }
@@ -147,5 +193,13 @@ public class Base {
 
     public void setRaces(Races races) {
         this.races = races;
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+    public void setDestroyed(boolean destroyed) {
+        isDestroyed = destroyed;
     }
 }
