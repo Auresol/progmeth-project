@@ -33,7 +33,7 @@ public class Baneling extends BaseTerranEnemy{
                     }
                 }
             }
-            this.setHealth(0);
+            this.selfDelete();
         }
     }
 }
