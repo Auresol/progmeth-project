@@ -1,14 +1,15 @@
-package component.terran;
+package component.zerg;
 
 import component.Base;
 import component.BaseUnit;
 import component.Races;
+import component.terran.BaseTerranEnemy;
 import control.GameControl;
 import util.Vector2D;
 
 import java.util.ArrayList;
 
-public class Baneling extends BaseTerranEnemy{
+public class Baneling extends BaseZergEnemy {
     private static final double BASE_SPEED = 19.5;
     private static final double BASE_MAX_HEALTH = 10;
     private static final double BASE_DAMAGE = 0.5;
