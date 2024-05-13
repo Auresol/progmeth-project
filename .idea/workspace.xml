@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/component/terran/Sniper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Sniper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/terran/Thor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Thor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Baneling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Baneling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/zerg/Infestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Infestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Zergling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Zergling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +29,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
