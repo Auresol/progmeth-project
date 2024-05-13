@@ -4,12 +4,9 @@ import component.*;
 
 import component.spell.BaseSpell;
 import component.spell.Fireball;
-import component.spell.LightningOrb;
-import component.spell.Tornado;
-import component.terran.Baneling;
+import component.zerg.Baneling;
 import component.terran.Medic;
 import component.terran.Solider;
-import component.terran.Thor;
 import graphic.GameRender;
 import javafx.application.Platform;
 import util.Vector2D;
