@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="" />
+    <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,7 +45,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "mac",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mpmac/Documents/GitHub/progmethproject/src",
+    "last_opened_file_path": "C:/Users/mpmac/Documents/GitHub/progmethproject/res",
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -51,6 +54,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mpmac\Documents\GitHub\progmethproject\res" />
       <recent name="C:\Users\mpmac\Documents\GitHub\progmethproject\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -70,7 +74,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-ffffd64d" />
+        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-eb49e076" />
       </set>
     </attachedChunks>
   </component>
