@@ -37,6 +37,8 @@ public class BaseUnit extends Base{
         return maxHealth;
     }
 
+
+
     public void setMaxHealth(double maxHealth) {
         this.maxHealth = maxHealth;
     }
