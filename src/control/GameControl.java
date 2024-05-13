@@ -32,9 +32,14 @@ public class GameControl {
         entities.put(Races.TERRAN, new ArrayList<>());
         entities.put(Races.ZERG, new ArrayList<>());
         entities.put(Races.PROTOSS, new ArrayList<>());
+        entities.put(Races.ALL, new ArrayList<>());
+
+        entities.get(Races.ALL).add(player);
+        entities.get(Races.ALL).add(crystal);
+
+        System.out.println(entities);
 
         startGame();
-
     }
 
     public void startGame(){
@@ -67,11 +72,6 @@ public class GameControl {
         },0,4000);
     }
 
-//    public MainControl(Player player, Crystal crystal) {
-//        this.player = player;
-//        this.crystal = crystal;
-//    }
-
     public static GameControl getInstance(){
         if(instance == null){
             instance = new GameControl();
@@ -85,14 +85,13 @@ public class GameControl {
         selectedSpell.cast();
     }
 
-    public void moveCamera(Vector2D direction){
-        for(Base base : entities.get(Races.TERRAN)){
-            base.setCameraMovementVector(direction);
-        }
-    }
+
     public void addEntity(Races races, Base entity){
         entities.get(races).add(entity);
-        Platform.runLater(() -> GameRender.getInstance().getChildren().add(entity.getRenderGroup()));
+        Platform.runLater(() -> {
+            GameRender.getInstance().getChildren().add(entity.getRenderGroup());
+            GameRender.getInstance().getChildren().add(entity.getInvisibleRenderGroup());
+        });
     }
 
     public Crystal getCrystal() {

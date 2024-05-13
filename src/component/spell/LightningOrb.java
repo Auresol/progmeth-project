@@ -22,7 +22,6 @@ public class LightningOrb extends BaseSpell implements Upgradable{
 
     public LightningOrb(Vector2D position, Races races) {
         super("LightningOrb", imageUrl, position, 20,IMAGE_SCALE,races);
-        updateSprite();
 
         applyEffect();
     }

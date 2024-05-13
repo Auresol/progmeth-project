@@ -1,10 +1,8 @@
 package component;
 
-import control.GameControl;
-import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.TriangleMesh;
 import util.Vector2D;
 
 public class BaseUnit extends Base{
@@ -16,7 +14,7 @@ public class BaseUnit extends Base{
     private double damage;
     private double attackFrequency;
     private boolean attackFlag = false;
-    private BaseUnit target;
+    private BaseUnit target = null;
     private Thread attackThread;
 
     public BaseUnit(String name, String imageUrl, Vector2D position, double maxHealth, double speed, double imageScale, double minAttackRange, double maxAttackRange, double damage, double attackFrequency, Races races) {
@@ -52,7 +50,7 @@ public class BaseUnit extends Base{
     }
 
     public boolean isDestroyed(){
-        return health <= 0;
+        return health <= 0 || super.isDestroyed();
     }
 
     public double getMaxAttackRange() {
@@ -95,11 +93,11 @@ public class BaseUnit extends Base{
         this.target = target;
     }
 
-    @Override
-    public void updateSprite(){
-        getRenderGroup().setLayoutX(getPosition().getX());
-        getRenderGroup().setLayoutY(getPosition().getY());
+    public void updateSprite(boolean renderAsMainRace){
+
         healthBar.setWidth(50*(health/maxHealth));
+        super.updateSprite(renderAsMainRace);
+
     }
 
     public void step(double time){
@@ -136,8 +134,11 @@ public class BaseUnit extends Base{
             public void run() {
                 while (attackFlag) {
                     try {
-                        target.setHealth(target.getHealth() - damage);
                         Thread.sleep((long) (attackFrequency * 1000));
+                        if(!attackFlag){
+                            break;
+                        }
+                        target.setHealth(target.getHealth() - damage);
 
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);

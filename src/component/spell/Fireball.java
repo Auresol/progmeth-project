@@ -18,10 +18,9 @@ public class Fireball extends BaseSpell implements Upgradable {
     private static final double BASE_CAST_TIME = 2;
     private static final double BASE_RADIUS = 500;
     private static final double IMAGE_SCALE = 0.5;
-    private static String imageUrl = "Fireball.png";
+    private static String imageUrl = "fireball.png";
     public Fireball(Vector2D position, Races races) {
         super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
-        updateSprite();
     }
     public Fireball(Vector2D position, Empower empower,Races races) {
         super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
@@ -61,6 +60,8 @@ public class Fireball extends BaseSpell implements Upgradable {
                 }
             }
         }
+
+        selfDelete();
     }
 
 

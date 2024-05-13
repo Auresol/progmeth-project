@@ -21,7 +21,6 @@ public class Medic extends BaseTerranEnemy{
     public Medic(Vector2D position) {
         super("Medic","medic.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
         setTarget(GameControl.getInstance().getCrystal());
-        updateSprite();
         applyEffect();
     }
 
