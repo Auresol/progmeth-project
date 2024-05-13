@@ -6,7 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Infestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Infestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Crystal.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/crystal.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Fireball.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/fireball.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/Pane/start.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Base.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/BaseUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/BaseUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Crystal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Crystal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/spell/Fireball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Fireball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/spell/Tornado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Tornado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/BaseTerranEnemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/terran/Medic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Medic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/terran/Solider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Solider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/KeyInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/KeyInputControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphic/GameRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/GameRender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphic/MainRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/MainRender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/Vector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Vector2D.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +61,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;mac&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mpmac/Documents/GitHub/progmethproject/res&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/auresol/IdeaProjects/openttd&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
@@ -53,30 +71,19 @@
   }
 }</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\mpmac\Documents\GitHub\progmethproject\res" />
-      <recent name="C:\Users\mpmac\Documents\GitHub\progmethproject\src" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mpmac\Documents\GitHub\progmethproject\res" />
+      <recent name="$PROJECT_DIR$/res" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="vampire" />
-      <option name="VM_PARAMETERS" value="--module-path D:/download/openjfx-20.0.2_windows-x64_bin-sdk/javafx-sdk-20.0.2/lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-20.0.2-azul-20.0.2-4caba194b151-eb49e076" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
