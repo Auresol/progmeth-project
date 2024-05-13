@@ -17,7 +17,7 @@ public class Player extends BaseUnit{
 
     public Player(Vector2D position){
         super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, 0,Races.ALL);
-
+        updateSprite();
     }
 
 

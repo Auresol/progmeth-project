@@ -12,6 +12,7 @@ import util.Vector2D;
 
 import javax.swing.plaf.TableHeaderUI;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class LightningOrb extends BaseSpell implements Upgradable{
     private static final double BASE_DAMAGE = 1;
@@ -21,13 +22,16 @@ public class LightningOrb extends BaseSpell implements Upgradable{
     private static final String imageUrl = "lighting_orb.png";
 
     public LightningOrb(Vector2D position, Races races) {
-        super("LightningOrb", imageUrl, position, 20,IMAGE_SCALE,races);
-
+        //Vector2D playerPosition = GameControl.getInstance().getPlayer().getPosition();
+        super("LightningOrb", imageUrl, GameControl.getInstance().getPlayer().getPosition(), 20,IMAGE_SCALE,races);
+        this.setDirection(position.subtract(GameControl.getInstance().getPlayer().getPosition()).getNormalize());
+        cast();
         applyEffect();
     }
 
     public LightningOrb(Vector2D position, Empower empower, Races races) {
         super("LightningOrb", imageUrl, position, 0, IMAGE_SCALE,races);
+        cast();
         upgrade(empower);
     }
 

@@ -2,6 +2,7 @@ package component.spell;
 
 import component.Base;
 import component.BaseUnit;
+import component.Player;
 import component.Races;
 import component.terran.BaseTerranEnemy;
 import control.GameControl;
@@ -24,10 +25,12 @@ public class Tornado extends BaseSpell implements Upgradable {
     private static String imageUrl = "tornado.png";
     public Tornado(Vector2D position, Races races) {
         super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
+        cast();
         applyEffect();
     }
     public Tornado(Vector2D position, Empower empower,Races races) {
         super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
+        cast();
         upgrade(empower);
 
     }
@@ -72,10 +75,11 @@ public class Tornado extends BaseSpell implements Upgradable {
                     try {
 
                         ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
-                        for (Base entity : entities) {
-                            if (entity instanceof BaseTerranEnemy) {
-                                BaseTerranEnemy castUnit = ((BaseTerranEnemy) entity);
-                                if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_RADIUS) { //distanceTo not yet implement
+                        for (int i = 0;i < entities.size();i++) {
+                            Base entity = entities.get(i);
+                            if (entity instanceof BaseUnit) {
+                                BaseUnit castUnit = ((BaseUnit) entity);
+                                if (!(entity instanceof Player) && getPosition().subtract(entity.getPosition()).getSize() <= BASE_RADIUS) { //distanceTo not yet implement
                                     Vector2D pullDirection = getPosition().subtract(castUnit.getPosition()).getNormalize();
                                     castUnit.setPosition(castUnit.getPosition().add(pullDirection.multiply(BASE_PULL_FORCE*Config.timeStep)));
                                 }

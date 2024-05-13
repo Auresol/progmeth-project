@@ -21,10 +21,12 @@ public class Fireball extends BaseSpell implements Upgradable {
     private static String imageUrl = "fireball.png";
     public Fireball(Vector2D position, Races races) {
         super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
+        cast();
     }
     public Fireball(Vector2D position, Empower empower,Races races) {
         super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
         upgrade(empower);
+        cast();
 
     }
     public void upgrade(Empower empower){

@@ -75,14 +75,8 @@ public class GameRender extends Pane {
 
     private static void updateEntity(Base entity, double rotateAngle){
 
-        Races race = entity.getRaces();
-
         if(entity.isDestroyed()){
-            entities.get(race).remove(entity);
-            Platform.runLater(() -> {
-                GameRender.getInstance().getChildren().remove(entity.getRenderGroup());
-                GameRender.getInstance().getChildren().remove(entity.getInvisibleRenderGroup());
-            });
+            GameControl.getInstance().removeEntity(entity);
             return;
         }
 
@@ -104,7 +98,7 @@ public class GameRender extends Pane {
         }
 
         entity.step(Config.timeStep);
-        entity.updateSprite(race == currentRace || currentRace == Races.ALL || race == Races.ALL);
+        entity.updateSprite();
 
     }
 

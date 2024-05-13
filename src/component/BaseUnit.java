@@ -1,5 +1,9 @@
 package component;
 
+import graphic.GameRender;
+import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,6 +20,9 @@ public class BaseUnit extends Base{
     private boolean attackFlag = false;
     private BaseUnit target = null;
     private Thread attackThread;
+    private Image invisibleImage;
+    private ImageView invisibleImageView;
+    private Group invisibleRenderGroup = new Group();
 
     public BaseUnit(String name, String imageUrl, Vector2D position, double maxHealth, double speed, double imageScale, double minAttackRange, double maxAttackRange, double damage, double attackFrequency, Races races) {
         super(name, imageUrl,position, speed, imageScale, races);
@@ -30,7 +37,30 @@ public class BaseUnit extends Base{
         healthBar.setLayoutY(-this.getImage().getHeight()*getImageScale()/2 - 10);
         getRenderGroup().getChildren().add(healthBar);
 
-        constructAttackThread();
+        String path = null;
+        switch (getRaces()){
+            case ZERG -> path = "glow_red.png";
+            case PROTOSS -> path = "glow_blue.png";
+            case TERRAN -> path = "glow_green.png";
+            case ALL -> path = "glow_green.png";
+        }
+        this.invisibleImage = new Image(ClassLoader.getSystemResource(path).toString());
+
+        invisibleImageView = new ImageView(invisibleImage);
+        invisibleImageView.setPreserveRatio(true);
+        invisibleImageView.setScaleX(0.05);
+        invisibleImageView.setScaleY(0.05);
+
+        // Calculate offsets for centering the scaled image
+        double invisibleXOffset = -invisibleImage.getWidth()/2;
+        double invisibleYOffset = -invisibleImage.getHeight()/2;
+
+        // Translate the image to center it
+        invisibleImageView.setLayoutX(invisibleXOffset);
+        invisibleImageView.setLayoutY(invisibleYOffset);
+
+        invisibleRenderGroup.getChildren().add(invisibleImageView);
+
     }
 
     public double getMaxHealth() {
@@ -95,11 +125,47 @@ public class BaseUnit extends Base{
         this.target = target;
     }
 
-    public void updateSprite(boolean renderAsMainRace){
+    @Override
+    public void updateSprite() {
 
-        healthBar.setWidth(50*(health/maxHealth));
-        super.updateSprite(renderAsMainRace);
+        healthBar.setWidth(50 * (health / maxHealth));
 
+        boolean renderAsMainRace = (getRaces() == GameRender.getCurrentRace() || GameRender.getCurrentRace() == Races.ALL || getRaces() == Races.ALL);
+
+        Platform.runLater(() -> {
+            getRenderGroup().setLayoutX(getPosition().getX());
+            getRenderGroup().setLayoutY(getPosition().getY());
+
+            invisibleRenderGroup.setLayoutX(getPosition().getX());
+            invisibleRenderGroup.setLayoutY(getPosition().getY());
+
+            if(getRenderGroup().isVisible() != renderAsMainRace){
+                getRenderGroup().setVisible(renderAsMainRace);
+            }
+
+            if(getInvisibleRenderGroup().isVisible() == renderAsMainRace){
+                getInvisibleRenderGroup().setVisible(!renderAsMainRace);
+            }
+        });
+
+//        if(!isRenderAsMainRace() && renderAsMainRace){
+//            Platform.runLater(() -> {
+//                invisibleRenderGroup.setVisible(false);
+//                getRenderGroup().setVisible(true);
+//            });
+//        }else if(isRenderAsMainRace() && !renderAsMainRace){
+//            Platform.runLater(() -> {
+//                invisibleRenderGroup.setVisible(true);
+//                getRenderGroup().setVisible(false);
+//            });
+//
+//        }
+
+//        if(getRenderGroup().isVisible() != renderAsMainRace){
+//            Platform.runLater(() -> {
+//                getRenderGroup().setVisible(renderAsMainRace);
+//            });
+//        }
     }
 
     public void step(double time){
@@ -150,5 +216,7 @@ public class BaseUnit extends Base{
         });
     }
 
-
+    public Group getInvisibleRenderGroup() {
+        return invisibleRenderGroup;
+    }
 }

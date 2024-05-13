@@ -1,0 +1,396 @@
+@startuml
+class graphic.GameRender {
+- {static} GameControl gameControl
+- {static} HashMap<Races,ArrayList<Base>> entities
+- {static} GameRender instance
+- {static} double cameraTurnSpeed
+- {static} double cameraAngle
+- {static} double cameraTargetAngle
+- {static} Player player
+- {static} Crystal crystal
+- {static} Races currentRace
++ {static} GameRender getInstance()
++ {static} void update()
+- {static} void updateEntity(Base,double)
++ {static} double getCameraTargetAngle()
++ {static} void setCameraTargetAngle(double)
++ {static} Races getCurrentRace()
++ {static} void setCurrentRace(Races)
++ {static} void goToNextRaces()
++ {static} void goToPreviousRaces()
+}
+
+
+class graphic.MainRender {
+- {static} MainRender instance
++ {static} Parent load()
++ {static} MainRender getInstance()
+}
+
+
+class component.spell.LightningOrb {
+- {static} double BASE_DAMAGE
+- {static} double BASE_CAST_TIME
+- {static} double ZAP_RANGE
+- {static} double IMAGE_SCALE
+- {static} String imageUrl
++ void upgrade(Empower)
++ void cast()
++ void applyEffect()
+}
+
+
+class graphic.MainRenderFXMLControl {
+- AnchorPane anchorPane
+- Button startButton
+- Button howToPlayButton
++ void initialize()
++ void startButtonHandler()
++ void howToPlayButtonHandler()
+}
+
+
+abstract class component.spell.BaseSpell {
++ void cast()
++ void applyEffect()
+}
+
+class component.terran.Sniper {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
+}
+
+class component.zerg.BaseZergEnemy {
+}
+class component.zerg.Baneling {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
++ void applyEffect()
+}
+
+
+class component.spell.Fireball {
+- {static} double BASE_DAMAGE
+- {static} double BASE_CAST_TIME
+- {static} double BASE_RADIUS
+- {static} double IMAGE_SCALE
+- {static} String imageUrl
++ void upgrade(Empower)
++ void cast()
++ void applyEffect()
+}
+
+
+interface component.spell.Upgradable {
+~ void upgrade(Empower)
+}
+
+class control.MainControl {
+- {static} MainControl instance
++ {static} MainControl getInstance()
+}
+
+
+class setting.Config {
++ {static} Screen screen
++ {static} double width
++ {static} double height
++ {static} double timeStep
+}
+
+class control.KeyInputControl {
+- {static} KeyInputControl instance
+- {static} double sceneWidth
+- {static} double sceneHeight
+- boolean[] arrowKey
+- boolean[] cameraRotateState
+- {static} HashMap<KeyCode,Spell> spellMapping
+- {static} KeyCode currentKeyToggle
++ {static} KeyInputControl getInstance()
++ void handle(KeyEvent)
+- void rotateCameraHandler(KeyEvent)
+- void updateWalkDirection()
++ {static} KeyCode getCurrentKeyToggle()
++ {static} void setCurrentKeyToggle(KeyCode)
+}
+
+
+interface component.spell.Empower {
+}
+class component.zerg.Zergling {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
+}
+
+class component.zerg.Mutalish {
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
++ void applyEffect()
+}
+
+
+class component.terran.Thor {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
+}
+
+class util.Vector2D {
+- {static} Random random
++ {static} Vector2D ZERO
++ {static} Vector2D UP
++ {static} Vector2D DOWN
++ {static} Vector2D RIGHT
++ {static} Vector2D LEFT
++ {static} Vector2D MID_SCREEN
+- double x
+- double y
++ Vector2D add(Vector2D)
++ Vector2D add(double,double)
++ Vector2D subtract(Vector2D)
++ Vector2D subtract(double,double)
++ Vector2D multiply(double)
++ Vector2D reverse()
++ Vector2D rotateBy90(boolean)
++ double getSize()
++ Vector2D getNormalize()
++ Vector2D getVectorWithSize(double)
++ double getX()
++ void setX(double)
++ double getY()
++ void setY(double)
++ String toString()
+}
+
+
+class component.terran.BaseTerranEnemy {
+}
+class component.Player {
++ {static} String imageUrl
++ {static} double BASE_MAX_HEALTH
++ {static} double BASE_SPEED
++ {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
+- {static} double BASE_DAMAGE
+}
+
+class component.Base {
+- String name
+- Image image
+- ImageView imageView
+- Vector2D position
+- double speed
+- Vector2D direction
+- Vector2D cameraMovementVector
+- Group renderGroup
+- Circle redDot
+- double imageScale
+- Races races
+- boolean isDestroyed
++ void updateSprite()
++ void step(double)
++ void selfDelete()
++ String getName()
++ void setName(String)
++ Vector2D getPosition()
++ void setPosition(Vector2D)
++ Image getImage()
++ void setImage(String)
++ ImageView getImageView()
++ Vector2D getDirection()
++ void setDirection(Vector2D)
++ Vector2D getCameraMovementVector()
++ void setCameraMovementVector(Vector2D)
++ double getSpeed()
++ void setSpeed(double)
++ Group getRenderGroup()
++ void setRenderGroup(Group)
++ double getImageScale()
++ void setImageScale(double)
++ Races getRaces()
++ void setRaces(Races)
++ boolean isDestroyed()
++ void setDestroyed(boolean)
+}
+
+
+class component.spell.Tornado {
+- {static} double BASE_DAMAGE
+- {static} double BASE_CAST_TIME
+- {static} double BASE_RADIUS
+- {static} double BASE_PULL_FORCE
+- {static} double IMAGE_SCALE
+- {static} String imageUrl
++ void upgrade(Empower)
++ void cast()
++ void applyEffect()
+}
+
+
+class control.MouseInputControl {
+- {static} Vector2D currentMousePosition
+- {static} MouseInputControl instance
++ {static} MouseInputControl getInstance()
++ void handle(MouseEvent)
++ {static} Vector2D getCurrentMousePosition()
+}
+
+
+class component.terran.Medic {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double BASE_HEAL
+- {static} double BASE_HEAL_RANGE
+- {static} double IMAGE_SCALE
++ void applyEffect()
+}
+
+
+enum component.Races {
++  TERRAN
++  ZERG
++  PROTOSS
++  ALL
+}
+
+class component.terran.Solider {
+- {static} double BASE_SPEED
+- {static} double BASE_MAX_HEALTH
+- {static} double BASE_DAMAGE
+- {static} double BASE_MIN_ATTACK_RANGE
+- {static} double BASE_MAX_ATTACK_RANGE
+- {static} double BASE_ATTACK_FREQUENCY
+- {static} double IMAGE_SCALE
+}
+
+class component.Crystal {
+- {static} String name
+- {static} String imageUrl
+- {static} Vector2D position
+- {static} double maxHealth
+- {static} double IMAGE_SCALE
+}
+
+class component.BaseUnit {
+- double maxHealth
+- double health
+- Rectangle healthBar
+- double maxAttackRange
+- double minAttackRange
+- double damage
+- double attackFrequency
+- boolean attackFlag
+- BaseUnit target
+- Thread attackThread
+- Image invisibleImage
+- ImageView invisibleImageView
+- Group invisibleRenderGroup
++ double getMaxHealth()
++ void setMaxHealth(double)
++ double getHealth()
++ void setHealth(double)
++ boolean isDestroyed()
++ double getMaxAttackRange()
++ void setMaxAttackRange(double)
++ double getMinAttackRange()
++ void setMinAttackRange(double)
++ double getDamage()
++ void setDamage(double)
++ double getAttackFrequency()
++ void setAttackFrequency(double)
++ BaseUnit getTarget()
++ void setTarget(BaseUnit)
++ void updateSprite()
++ void step(double)
+- void constructAttackThread()
++ Group getInvisibleRenderGroup()
+}
+
+
+enum component.spell.Spell {
++  FIREBALL
++  LIGHTING_ORB
++  TORNADO
+}
+
+class control.GameControl {
+- {static} GameControl instance
+- KeyInputControl keyInputControl
+- Player player
+- Crystal crystal
+- BaseSpell selectedSpell
+- HashMap<Races,ArrayList<Base>> entities
++ void startGame()
++ {static} GameControl getInstance()
++ void useSpell(Vector2D,Spell)
++ void addEntity(Base)
++ void removeEntity(Base)
++ Crystal getCrystal()
++ void setCrystal(Crystal)
++ HashMap<Races,ArrayList<Base>> getEntities()
++ Player getPlayer()
++ void setPlayer(Player)
+}
+
+
+class Main {
+- {static} GameRender gameRender
++ void start(Stage)
++ {static} void main(String[])
+}
+
+
+
+
+javafx.scene.layout.Pane <|-- graphic.GameRender
+javafx.scene.layout.Pane <|-- graphic.MainRender
+component.spell.Upgradable <|.. component.spell.LightningOrb
+component.spell.BaseSpell <|-- component.spell.LightningOrb
+component.Base <|-- component.spell.BaseSpell
+component.terran.BaseTerranEnemy <|-- component.terran.Sniper
+component.BaseUnit <|-- component.zerg.BaseZergEnemy
+component.zerg.BaseZergEnemy <|-- component.zerg.Baneling
+component.spell.Upgradable <|.. component.spell.Fireball
+component.spell.BaseSpell <|-- component.spell.Fireball
+javafx.event.EventHandler <|.. control.KeyInputControl
+component.zerg.BaseZergEnemy <|-- component.zerg.Zergling
+component.zerg.BaseZergEnemy <|-- component.zerg.Mutalish
+component.terran.BaseTerranEnemy <|-- component.terran.Thor
+component.BaseUnit <|-- component.terran.BaseTerranEnemy
+component.BaseUnit <|-- component.Player
+component.spell.Upgradable <|.. component.spell.Tornado
+component.spell.BaseSpell <|-- component.spell.Tornado
+javafx.event.EventHandler <|.. control.MouseInputControl
+component.terran.BaseTerranEnemy <|-- component.terran.Medic
+component.terran.BaseTerranEnemy <|-- component.terran.Solider
+component.BaseUnit <|-- component.Crystal
+component.Base <|-- component.BaseUnit
+javafx.application.Application <|-- Main
+@enduml

@@ -3,6 +3,7 @@ package component;
 import control.GameControl;
 import control.MainControl;
 import graphic.GameRender;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,14 +21,13 @@ public class Base {
     private Vector2D direction = Vector2D.ZERO;
     private Vector2D cameraMovementVector = Vector2D.ZERO;
     private Group renderGroup = new Group();
-    private Image invisibleImage;
-    private ImageView invisibleImageView;
-    private Group invisibleRenderGroup = new Group();
+//    private Image invisibleImage;
+//    private ImageView invisibleImageView;
+//    private Group invisibleRenderGroup = new Group();
     private Circle redDot = new Circle(5, Color.RED);
     private double imageScale = 0.3;
     private Races races;
     private boolean isDestroyed = false;
-    private boolean renderAsMainRace = false;
 
     public Base(String name, String imageUrl, Vector2D position, double speed, double imageScale, Races races) {
         setName(name);
@@ -38,33 +38,42 @@ public class Base {
         setRaces(races);
 
         renderGroup.getChildren().add(this.getImageView());
-        invisibleRenderGroup.getChildren().add(this.invisibleImageView);
+
         //renderGroup.getChildren().add(redDot);
     }
 
-    public void updateSprite(boolean renderAsMainRace){
+    public void updateSprite(){
 
 //        if(this instanceof Player){
 //            System.out.println(renderAsMainRace);
 //        }
 
-        renderGroup.setLayoutX(position.getX());
-        renderGroup.setLayoutY(position.getY());
+        boolean renderAsMainRace = (getRaces() == GameRender.getCurrentRace() || GameRender.getCurrentRace() == Races.ALL || getRaces() == Races.ALL);
 
-        invisibleRenderGroup.setLayoutX(position.getX());
-        invisibleRenderGroup.setLayoutY(position.getY());
+        Platform.runLater(() -> {
+            renderGroup.setLayoutX(position.getX());
+            renderGroup.setLayoutY(position.getY());
 
-        if(!this.renderAsMainRace && renderAsMainRace){
-            invisibleRenderGroup.setVisible(false);
-            renderGroup.setVisible(true);
-        }
+            if(renderGroup.isVisible() != renderAsMainRace){
+                renderGroup.setVisible(renderAsMainRace);
+            }
+        });
 
-        if(this.renderAsMainRace && !renderAsMainRace){
-            invisibleRenderGroup.setVisible(true);
-            renderGroup.setVisible(false);
-        }
+//        if (!this.renderAsMainRace && renderAsMainRace) {
+//            Platform.runLater(() -> {
+//                renderGroup.setVisible(true);
+//            });
+//        } else if (this.renderAsMainRace && !renderAsMainRace) {
+//            Platform.runLater(() -> {
+//                renderGroup.setVisible(false);
+//            });
+//        }
 
-        this.renderAsMainRace = renderAsMainRace;
+//        if(renderGroup.isVisible() != renderAsMainRace){
+//            Platform.runLater(() -> {
+//                renderGroup.setVisible(renderAsMainRace);
+//            });
+//        }
 
         //System.out.println("UPDATE SPRITE");
         //imageView.setLayoutY(position.getY());
@@ -78,7 +87,7 @@ public class Base {
     }
 
     public void selfDelete(){
-        GameControl.getInstance().getEntities().get(getRaces()).remove(this);
+        GameControl.getInstance().removeEntity(this);
     }
 
 
@@ -106,7 +115,6 @@ public class Base {
     public void setImage(String imageUrl) {
         try {
             this.image = new Image(ClassLoader.getSystemResource(imageUrl).toString());
-            this.invisibleImage = new Image(ClassLoader.getSystemResource("glow.png").toString());
         }catch (Exception e){
             System.out.println("No " + imageUrl + " presented -> " + e);
         };
@@ -124,19 +132,6 @@ public class Base {
         imageView.setLayoutX(xOffset);
         imageView.setLayoutY(yOffset);
         //imageView.setLayoutX(-image.getWidth()/2);
-
-        invisibleImageView = new ImageView(invisibleImage);
-        invisibleImageView.setPreserveRatio(true);
-        invisibleImageView.setScaleX(0.05);
-        invisibleImageView.setScaleY(0.05);
-
-        // Calculate offsets for centering the scaled image
-        double invisibleXOffset = -invisibleImage.getWidth()/2;
-        double invisibleYOffset = -invisibleImage.getHeight()/2;
-
-        // Translate the image to center it
-        invisibleImageView.setLayoutX(invisibleXOffset);
-        invisibleImageView.setLayoutY(invisibleYOffset);
     }
 
     public ImageView getImageView() {
@@ -171,9 +166,6 @@ public class Base {
         return renderGroup;
     }
 
-    public Group getInvisibleRenderGroup() {
-        return invisibleRenderGroup;
-    }
 
     public void setRenderGroup(Group renderGroup) {
         this.renderGroup = renderGroup;
@@ -202,4 +194,5 @@ public class Base {
     public void setDestroyed(boolean destroyed) {
         isDestroyed = destroyed;
     }
+
 }

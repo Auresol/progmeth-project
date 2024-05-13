@@ -31,7 +31,6 @@ public class Main extends Application {
 
         // Create the scene and set it on the stage
 
-
         //stage.setScene(new Scene(MainRender.load()))
         Scene gameScene = new Scene(gameRender, Config.width, Config.width);
         stage.setScene(gameScene);
