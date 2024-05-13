@@ -33,7 +33,7 @@ public class Mutalisk extends BaseZergEnemy{
                         Vector2D spawnPosition = new Vector2D(getPosition().getX(), getPosition().getY());
                         Zergling newZergling = new Zergling(spawnPosition);
                         GameControl.getInstance().addEntity(Races.ZERG,newZergling);
-                        Thread.sleep(2000);
+                        Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
