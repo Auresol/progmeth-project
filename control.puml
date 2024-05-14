@@ -1,0 +1,70 @@
+@startuml
+class control.MainControl {
+- {static} MainControl instance
+- {static} MainRender mainRender
+- {static} MediaPlayer mediaPlayer
++ {static} MainControl getInstance()
++ void load(Stage)
+- {static} void playBackgroundMusic()
++ {static} void stopBackgroundMusic()
+}
+
+
+class control.KeyInputControl {
+- {static} KeyInputControl instance
+- boolean[] arrowKey
+- boolean[] cameraRotateState
+- {static} boolean[] spellKeyboardLayoutState
+- {static} KeyCode currentKeyToggle
++ {static} KeyInputControl getInstance()
++ void handle(KeyEvent)
+- void rotateCameraHandler(KeyEvent)
+- void spellKeyboardLayLoutHandler(KeyEvent)
+- void updateWalkDirection()
++ {static} KeyCode getCurrentKeyToggle()
++ void setCurrentKeyToggle(KeyCode)
+}
+
+
+class control.GameEndControl {
+}
+class control.MouseInputControl {
+- {static} HashMap<KeyCode,Spell> spellMapping
+- {static} MouseInputControl instance
++ {static} MouseInputControl getInstance()
++ void handle(MouseEvent)
+}
+
+
+class control.GameControl {
+- {static} GameControl instance
+- {static} GameRender gameRender
+- {static} MediaPlayer mediaPlayer
+- Player player
+- Crystal crystal
+- HashMap<Races,ArrayList<Base>> entities
+- boolean playing
+- boolean lose
++ void load(Stage)
+- void startGame()
++ {static} GameControl getInstance()
++ void useSpell(Vector2D,Spell)
++ void addEntity(Base)
++ void removeEntity(Base)
+- {static} void playBackgroundMusic()
++ {static} void stopBackgroundMusic()
++ Crystal getCrystal()
++ void setCrystal(Crystal)
++ HashMap<Races,ArrayList<Base>> getEntities()
++ Player getPlayer()
++ void setPlayer(Player)
++ boolean isPlaying()
++ void setPlaying(boolean)
+}
+
+
+
+
+javafx.event.EventHandler <|.. control.KeyInputControl
+javafx.event.EventHandler <|.. control.MouseInputControl
+@enduml

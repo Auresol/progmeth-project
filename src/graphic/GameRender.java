@@ -4,13 +4,18 @@ import component.*;
 import control.GameControl;
 import control.KeyInputControl;
 import control.MouseInputControl;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import setting.Config;
+import util.Goto;
 import util.Vector2D;
 
 import java.util.*;
@@ -27,17 +32,14 @@ public class GameRender extends Pane {
     private Crystal crystal;
     private static Races currentRace = Races.TERRAN;
 
-    public GameRender() {
-        this.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
-        this.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
-    }
+    public GameRender() {}
     public static GameRender getInstance(){
         if(instance == null){
             instance = new GameRender();
         }
         return instance;
     }
-    private void start(){
+    public void start(){
         gameControl = GameControl.getInstance();
         player = gameControl.getPlayer();
         crystal = gameControl.getCrystal();
@@ -51,14 +53,20 @@ public class GameRender extends Pane {
         //this.setOnKeyPressed(KeyInputControl.getInstance());
         //this.setOnKeyReleased(keyInputControl);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //System.out.println("Update");
-                update();
-            }
-        },0,(long) (1000*Config.timeStep));
+        Thread thread = new Thread(() -> {
+            try {
+                while (gameControl.isPlaying()) {
+                    Platform.runLater(() -> {
+                        update();
+                    });
+                    Thread.sleep((long) (1000 * Config.timeStep));
+                }
+                //System.out.println("End of render");
+
+            }catch (Exception e){};
+        });
+
+        thread.start();
     }
 
     private void clear(){
@@ -71,7 +79,11 @@ public class GameRender extends Pane {
             }
         }
     }
+
     private void update(){
+        if(!GameControl.getInstance().isPlaying()){
+            return;
+        }
         double rotateAngle = cameraTargetAngle - cameraAngle;
 //        updateEntity(player, rotateAngle);
 //        updateEntity(crystal, rotateAngle);
@@ -92,6 +104,10 @@ public class GameRender extends Pane {
     private void updateEntity(Base entity, double rotateAngle){
 
         if(entity.isDestroyed()){
+            if(entity instanceof Player || entity instanceof Crystal){
+                GameControl.getInstance().endGame();
+                return;
+            }
             GameControl.getInstance().removeEntity(entity);
             return;
         }
@@ -134,6 +150,72 @@ public class GameRender extends Pane {
         GameRender.currentRace = currentRace;
     }
 
+    public void shakeCamera(int numShakes, long duration, double shakeStrengthIn, double decayShakeStrength) {
+
+        Thread thread = new Thread(() -> {
+
+            try {
+                TranslateTransition tt = new TranslateTransition(Duration.millis(duration));
+                tt.setNode(this);
+
+                double shakeStrength = shakeStrengthIn;
+                double originalX = this.getLayoutX(); // Store original X position
+                double originalY = this.getLayoutY(); // Store original Y position
+
+                double randomX = originalX;
+                double randomY = originalY;
+                double previousRandomX = randomX;
+                double previousRandomY = randomY;
+
+                for (int i = 0; i < numShakes; i++) {
+                    randomX = Math.random() * shakeStrength - shakeStrength / 2;
+                    randomY = Math.random() * shakeStrength - shakeStrength / 2;
+
+                    tt.setFromX(previousRandomX);
+                    tt.setFromY(previousRandomY);
+                    tt.setToX(randomX);
+                    tt.setToY(randomY);
+
+                    previousRandomX = randomX;
+                    previousRandomY = randomY;
+
+                    shakeStrength -= decayShakeStrength;
+
+                    Platform.runLater(tt::play);
+                    Thread.sleep(duration);
+                }
+
+                // After shakes, animate back to original position
+                TranslateTransition reset = new TranslateTransition(Duration.millis(duration));
+                reset.setNode(this);
+                reset.setFromX(randomX);
+                reset.setFromY(randomY);
+                reset.setToX(originalX);
+                reset.setToY(originalY);
+                //reset.setDelay(Duration.millis(numShakes * duration)); // Delay after shakes
+                Platform.runLater(reset::play);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+        });
+
+        thread.start();
+    }
+
+//    public static void darken(Node node, long duration) {
+//        ColorAdjust colorAdjust = new ColorAdjust();
+//        node.setEffect(colorAdjust);
+//        Timeline timeline = new Timeline();
+//        timeline.set(Duration.millis(duration));
+//        timeline.play();
+//        timeline.getKeyFrames().add(new javafx.animation.KeyFrame(Duration.millis(duration),
+//                "brightness", 0, colorAdjust.getBrightness()));
+//        colorAdjust.setBrightness(0); // Set final brightness after animation
+//    }
+
+    private void displayNextWave(){
+
+    }
     public static void goToNextRaces(){
         switch (currentRace){
             case TERRAN -> setCurrentRace(Races.ZERG);

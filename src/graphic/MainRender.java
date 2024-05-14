@@ -1,6 +1,8 @@
 package graphic;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -13,9 +15,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import setting.Config;
+import util.Goto;
 import util.Vector2D;
 
 import java.io.IOException;
@@ -25,7 +30,7 @@ public class MainRender extends Pane {
     private static MainRender instance;
     public MainRender(){
 
-        Image backgroundImage = new Image("background4.gif");
+        Image backgroundImage = new Image("ui/background4.gif");
         ImageView backgroundView = new ImageView(backgroundImage);
 
         backgroundView.setFitWidth(Config.width);
@@ -45,6 +50,7 @@ public class MainRender extends Pane {
         aboutImageView1.setLayoutY(aboutImageView1.getLayoutY() + Config.height/6);
 
         this.getChildren().addAll(gameLabel1, gameLabel2, playImageView1, aboutImageView1);
+
     };
 
 //    private static void loadAbout(){
@@ -82,9 +88,9 @@ public class MainRender extends Pane {
                 imageView1.setImage(playImage2);
 
                 if(imagePath1.equals("ui/play01.png")){
-
+                    Goto.getInstance().gotoGame();
                 }else if(imagePath1.equals("ui/about01.png")){
-
+                    Goto.getInstance().gotoAbout();
                 }
             }
         });

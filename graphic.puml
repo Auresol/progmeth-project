@@ -1,0 +1,51 @@
+@startuml
+class graphic.GameRender {
+- {static} GameControl gameControl
+- HashMap<Races,ArrayList<Base>> entities
+- {static} GameRender instance
+- {static} double cameraTurnSpeed
+- {static} double cameraAngle
+- {static} double cameraTargetAngle
+- Queue<Runnable> animationTasks
+- Player player
+- Crystal crystal
+- {static} Races currentRace
++ {static} GameRender getInstance()
++ void start()
+- void clear()
+- void update()
+- void updateEntity(Base,double)
++ {static} double getCameraTargetAngle()
++ {static} void setCameraTargetAngle(double)
++ {static} Races getCurrentRace()
++ {static} void setCurrentRace(Races)
++ void shakeCamera(int,long,double,double)
++ {static} void goToNextRaces()
++ {static} void goToPreviousRaces()
+}
+
+
+class graphic.MainRender {
+- {static} MainRender instance
+- {static} ImageView createTextLabelFromImage(String,double)
+- {static} ImageView createButtonFromImageAtCenter(String,String,double)
++ {static} MainRender getInstance()
+}
+
+
+class graphic.GameEndRender {
+- {static} int score
++ {static} GameEndRender instance
++ {static} GameEndRender getInstance()
+- void textInstallize()
++ {static} int getScore()
++ {static} void setScore(int)
+}
+
+
+
+
+javafx.scene.layout.Pane <|-- graphic.GameRender
+javafx.scene.layout.Pane <|-- graphic.MainRender
+javafx.scene.layout.VBox <|-- graphic.GameEndRender
+@enduml
