@@ -2,7 +2,13 @@ package graphic;
 
 import component.*;
 import control.GameControl;
+import control.KeyInputControl;
+import control.MouseInputControl;
 import javafx.application.Platform;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import setting.Config;
 import util.Vector2D;
@@ -12,17 +18,26 @@ import java.util.*;
 public class GameRender extends Pane {
 
     private static GameControl gameControl;
-    private static HashMap<Races, ArrayList<Base>> entities;
+    private HashMap<Races, ArrayList<Base>> entities;
     private static GameRender instance;
     private static final double cameraTurnSpeed = 10;
     private static double cameraAngle = 0;
     private static double cameraTargetAngle = 0;
-    private static Player player;
-    private static Crystal crystal;
+    private Player player;
+    private Crystal crystal;
     private static Races currentRace = Races.TERRAN;
 
     public GameRender() {
-
+        this.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
+        this.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
+    }
+    public static GameRender getInstance(){
+        if(instance == null){
+            instance = new GameRender();
+        }
+        return instance;
+    }
+    private void start(){
         gameControl = GameControl.getInstance();
         player = gameControl.getPlayer();
         crystal = gameControl.getCrystal();
@@ -41,18 +56,22 @@ public class GameRender extends Pane {
             @Override
             public void run() {
                 //System.out.println("Update");
-                GameRender.update();
+                update();
             }
         },0,(long) (1000*Config.timeStep));
     }
-    public static GameRender getInstance(){
-        if(instance == null){
-            instance = new GameRender();
-        }
-        return instance;
-    }
 
-    public static void update(){
+    private void clear(){
+        player = null;
+        crystal = null;
+
+        for(Node node : this.getChildren()){
+            if(node instanceof Group){
+                this.getChildren().remove(node);
+            }
+        }
+    }
+    private void update(){
         double rotateAngle = cameraTargetAngle - cameraAngle;
 //        updateEntity(player, rotateAngle);
 //        updateEntity(crystal, rotateAngle);
@@ -68,12 +87,9 @@ public class GameRender extends Pane {
             cameraAngle += rotateAngle * 0.1;
             //System.out.println("WALK : " + rotateAngle);
         }
-
-
-
     }
 
-    private static void updateEntity(Base entity, double rotateAngle){
+    private void updateEntity(Base entity, double rotateAngle){
 
         if(entity.isDestroyed()){
             GameControl.getInstance().removeEntity(entity);
@@ -83,7 +99,7 @@ public class GameRender extends Pane {
         if(Math.abs(rotateAngle) > 1) {
 
             // Cooler
-            Vector2D rotateVector = crystal.getPosition().subtract(entity.getPosition()).getNormalize().multiply(rotateAngle * 5).rotateBy90(false);
+            Vector2D rotateVector = this.crystal.getPosition().subtract(entity.getPosition()).getNormalize().multiply(rotateAngle * 5).rotateBy90(false);
             
             //Vector2D rotateVector = crystal.getPosition().subtract(entity.getPosition()).multiply(rotateAngle * 0.1).rotateBy90(clockwise);
 //            if(entity instanceof Player){

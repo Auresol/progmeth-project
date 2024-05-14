@@ -21,26 +21,32 @@ public class Main extends Application {
         // Set window size
 
         // Create the main pane for rendering
-        gameRender = GameRender.getInstance();
+        //gameRender = GameRender.getInstance();
 
         // Create the stage (main window)
         Stage stage = new Stage();
         stage.setTitle("JavaFX - Basic Player and Enemy");
         stage.setWidth(Config.width);
         stage.setHeight(Config.height);
+        stage.setResizable(false);
 
         // Create the scene and set it on the stage
 
         //stage.setScene(new Scene(MainRender.load()))
-        Scene gameScene = new Scene(gameRender, Config.width, Config.width);
-        stage.setScene(gameScene);
+        //Scene gameScene = new Scene(gameRender, Config.width, Config.width);
+        MainControl.getInstance().load(stage);
+        //stage.setScene(gameScene);
 
-        gameScene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
-        gameScene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
+        //gameScene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
+        //gameScene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
 
 
         // Show the stage
-        stage.show();
+        //stage.show();
+    }
+
+    public static void Goto(){
+
     }
 
     public static void main(String[] args) {

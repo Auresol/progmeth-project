@@ -20,20 +20,15 @@ import java.util.HashSet;
 
 public class KeyInputControl implements EventHandler<KeyEvent> {
     private static KeyInputControl instance;
-    private static double sceneWidth;
-    private static double sceneHeight;
     private boolean[] arrowKey = new boolean[]{false,false,false,false};
     private boolean[] cameraRotateState = new boolean[]{false, false};
     private static boolean[] spellKeyboardLayoutState = new boolean[]{false,false,false,false};
     private static KeyCode currentKeyToggle;
 
-    public KeyInputControl(double sceneWidth, double sceneHeight) {
-        KeyInputControl.sceneWidth = sceneWidth;
-        KeyInputControl.sceneHeight = sceneHeight;
-    }
+    public KeyInputControl() {}
     public static KeyInputControl getInstance(){
         if(instance == null){
-            instance = new KeyInputControl(Config.width,Config.height);
+            instance = new KeyInputControl();
         }
         return instance;
     }
@@ -130,7 +125,7 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
         return currentKeyToggle;
     }
 
-    public static void setCurrentKeyToggle(KeyCode currentKeyToggle) {
+    public void setCurrentKeyToggle(KeyCode currentKeyToggle) {
         KeyInputControl.currentKeyToggle = currentKeyToggle;
     }
 }
