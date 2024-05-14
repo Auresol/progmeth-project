@@ -6,25 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/start.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/background.gif" beforeDir="false" afterPath="$PROJECT_DIR$/res/ui/background.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/background2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/res/ui/background2.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/background3.gif" beforeDir="false" afterPath="$PROJECT_DIR$/res/ui/background3.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/background4.gif" beforeDir="false" afterPath="$PROJECT_DIR$/res/ui/background4.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Archons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Archons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Disruptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Disruptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Tempest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Tempest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Zealot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Zealot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Tornado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Tornado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/terran/Solider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Solider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/Crystal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Crystal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/spell/Fireball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Fireball.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/zerg/Baneling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Baneling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Infestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Infestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Zergling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Zergling.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/KeyInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/KeyInputControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control/MainControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MainControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphic/GameRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/GameRender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphic/MainRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/MainRender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphic/MainRenderFXMLControl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.puml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,13 +68,14 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/res" />
+      <recent name="$PROJECT_DIR$/res/ui" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="vampire" />
-      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics" />
+      <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Downloads/javafx-sdk-22/lib --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics,javafx.media" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

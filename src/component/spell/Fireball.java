@@ -4,6 +4,7 @@ import component.Base;
 import component.BaseUnit;
 import component.Races;
 import control.GameControl;
+import graphic.GameRender;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
@@ -63,6 +64,7 @@ public class Fireball extends BaseSpell implements Upgradable {
             }
         }
 
+        GameRender.getInstance().shakeCamera(30, 30,40, 1.5);
         selfDelete();
     }
 

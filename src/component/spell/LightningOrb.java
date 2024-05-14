@@ -1,6 +1,7 @@
 package component.spell;
 
 import component.Base;
+import component.BaseUnit;
 import component.Races;
 import component.terran.BaseTerranEnemy;
 import control.GameControl;
@@ -17,13 +18,14 @@ import java.util.Vector;
 public class LightningOrb extends BaseSpell implements Upgradable{
     private static final double BASE_DAMAGE = 1;
     private static final double BASE_CAST_TIME = 2;
+    private static final double BASE_SPEED = 50;
     private static final double ZAP_RANGE = 200;
     private static final double IMAGE_SCALE = 0.3;
     private static final String imageUrl = "lighting_orb.png";
 
     public LightningOrb(Vector2D position, Races races) {
         //Vector2D playerPosition = GameControl.getInstance().getPlayer().getPosition();
-        super("LightningOrb", imageUrl, GameControl.getInstance().getPlayer().getPosition(), 20,IMAGE_SCALE,races);
+        super("LightningOrb", imageUrl, GameControl.getInstance().getPlayer().getPosition(), BASE_SPEED,IMAGE_SCALE,races);
         this.setDirection(position.subtract(GameControl.getInstance().getPlayer().getPosition()).getNormalize());
         cast();
         applyEffect();
@@ -67,8 +69,8 @@ public class LightningOrb extends BaseSpell implements Upgradable{
                     try {
                         ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
                         for (Base entity : entities) {
-                            if (entity instanceof BaseTerranEnemy) {
-                                BaseTerranEnemy castUnit = ((BaseTerranEnemy) entity);
+                            if (entity instanceof BaseUnit) {
+                                BaseUnit castUnit = ((BaseUnit) entity);
                                 if (getPosition().subtract(entity.getPosition()).getSize() <= ZAP_RANGE) { //distanceTo not yet implement
                                     castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
                                 }

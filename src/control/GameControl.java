@@ -10,22 +10,38 @@ import component.terran.Solider;
 import graphic.GameRender;
 import javafx.application.Platform;
 import component.spell.*;
+import javafx.scene.Scene;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
+import util.Goto;
 import util.Vector2D;
 
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 // All key event is
 public class GameControl {
     private static GameControl instance;
+    private static GameRender gameRender;
+    private static MediaPlayer mediaPlayer;
+    private static Scene scene;
     private Player player;
     private Crystal crystal;
-    private BaseSpell selectedSpell;
     private HashMap<Races, ArrayList<Base>> entities;
     private boolean playing = false;
     private boolean lose = false;
+    private static int wave = 0;
 
     public GameControl() {
+        gameRender = GameRender.getInstance();
+        scene = new Scene(gameRender);
+    }
+
+    public void load(Stage stage){
         this.player = new Player(Vector2D.MID_SCREEN);
         this.crystal = new Crystal();
         entities = new HashMap<>();
@@ -37,12 +53,21 @@ public class GameControl {
         entities.get(Races.ALL).add(player);
         entities.get(Races.ALL).add(crystal);
 
-        System.out.println(entities);
+        mediaPlayer = new MediaPlayer(new Media(Paths.get("res/sound/backgroundMusic.mp3").toUri().toString()));
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        GameControl.playBackgroundMusic();
+        
+        scene.addEventFilter(KeyEvent.ANY, KeyInputControl.getInstance());
+        scene.addEventFilter(MouseEvent.MOUSE_CLICKED, MouseInputControl.getInstance());
 
-        startGame();
+        stage.setScene(scene);
+        stage.show();
+
+        instance.startGame();
+
     }
 
-    public void startGame(){
+    private void startGame(){
         playing = true;
         lose = false;
         Thread thread = new Thread(() -> {
@@ -78,6 +103,7 @@ public class GameControl {
                     addEntity(tempest);
                     baneling.updateSprite();
 
+                    //gameRender.shakeCamera(30, 30,40, 1.5);
                     Thread.sleep(2000);
                 }
             }catch (Exception e){
@@ -86,6 +112,8 @@ public class GameControl {
         });
 
         thread.start();
+
+        gameRender.start();
     }
 
     public static GameControl getInstance(){
@@ -126,6 +154,30 @@ public class GameControl {
         });
     }
 
+    private static void playBackgroundMusic() {
+
+        mediaPlayer.setOnReady(() -> Platform.runLater(() -> mediaPlayer.play()));
+    }
+
+    public static void stopBackgroundMusic() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
+
+    public void endGame(){
+        GameControl.getInstance().setPlaying(false);
+
+        for(Races race : Races.values()){
+            for(int i = 0;i < entities.get(race).size();i++){
+                Base entity = entities.get(race).get(i);
+                removeEntity(entity);
+            }
+        }
+
+        Goto.getInstance().gotoEndGame();
+    }
+
 
     public Crystal getCrystal() {
         return crystal;
@@ -153,5 +205,9 @@ public class GameControl {
 
     public void setPlaying(boolean playing) {
         this.playing = playing;
+    }
+
+    public static int getWave() {
+        return wave;
     }
 }

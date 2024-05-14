@@ -45,7 +45,8 @@ public class Baneling extends BaseZergEnemy {
                         if (getHealth() < BASE_MAX_HEALTH/10 || isDestroyed() || getPosition().subtract(getTarget().getPosition()).getSize() <= 100){
                             ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
                             for (Base entity : entities) {
-                                if (entity instanceof BaseUnit castUnit) {
+                                if (entity instanceof BaseUnit) {
+                                    BaseUnit castUnit = (BaseUnit) entity;
                                     if (getPosition().subtract(entity.getPosition()).getSize() <= BASE_MAX_ATTACK_RANGE) {
                                         castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
                                     }
