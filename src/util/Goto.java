@@ -1,10 +1,12 @@
 package util;
 
+import com.sun.tools.javac.Main;
 import control.AboutControl;
 import control.GameControl;
 import control.GameEndControl;
 import control.MainControl;
 import graphic.AboutRender;
+import graphic.GameEndRender;
 import javafx.stage.Stage;
 
 public class Goto {
@@ -21,6 +23,7 @@ public class Goto {
 
     public void gotoGame(){
         stopAllMusic();
+        GameControl.getInstance().removeAll();
         GameControl.getInstance().load(stage);
     }
     public void gotoMain(){
@@ -29,6 +32,7 @@ public class Goto {
     }
     public void gotoEndGame(){
         stopAllMusic();
+        GameEndRender.getInstance().setScore(GameControl.getWave());
         GameEndControl.getInstance().load(stage);
     }
     public void gotoAbout(){

@@ -5,7 +5,7 @@ import setting.Config;
 import java.util.Random;
 
 public class Vector2D {
-    private static final Random random = new Random();
+    private static Random random = new Random();
     public static final Vector2D ZERO = new Vector2D(0,0);
     public static final Vector2D UP = new Vector2D(0,-1);
     public static final Vector2D DOWN = new Vector2D(0,1);
@@ -59,11 +59,6 @@ public class Vector2D {
             return Vector2D.ZERO;
         }
         return new Vector2D(x/size,y/size);
-    }
-
-    public Vector2D getVectorWithSize(double in_size){
-        double size = getSize();
-        return new Vector2D(x/size * in_size,y/size * in_size);
     }
 
     public double getX() {

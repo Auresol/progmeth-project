@@ -19,19 +19,15 @@ public class Fireball extends BaseSpell implements Upgradable {
     private static final double BASE_CAST_TIME = 2;
     private static final double BASE_RADIUS = 500;
     private static final double IMAGE_SCALE = 0.5;
-    private static String imageUrl = "fireball.png";
+    private static double buffDamage = 1;
+    private static String IMAGE_URL = "fireball.png";
     public Fireball(Vector2D position, Races races) {
-        super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
+        super("FireBall",IMAGE_URL,position,0,IMAGE_SCALE,races);
         cast();
     }
-    public Fireball(Vector2D position, Empower empower,Races races) {
-        super("FireBall",imageUrl,position,0,IMAGE_SCALE,races);
-        upgrade(empower);
-        cast();
 
-    }
-    public void upgrade(Empower empower){
-        System.out.println("Upgrade");
+    public void upgrade(){
+        buffDamage = 5;
     }
 
     public void cast() {
@@ -59,7 +55,7 @@ public class Fireball extends BaseSpell implements Upgradable {
             if(base instanceof BaseUnit) {
                 if (base.getPosition().subtract(this.getPosition()).getSize() <= BASE_RADIUS) {
                     BaseUnit castUnit = ((BaseUnit) base);
-                    castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
+                    castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE * buffDamage);
                 }
             }
         }

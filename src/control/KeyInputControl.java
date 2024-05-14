@@ -24,6 +24,8 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
     private boolean[] cameraRotateState = new boolean[]{false, false};
     private static boolean[] spellKeyboardLayoutState = new boolean[]{false,false,false,false};
     private static KeyCode currentKeyToggle;
+    private static boolean shiftToggle;
+    private static boolean controlToggle;
 
     public KeyInputControl() {}
     public static KeyInputControl getInstance(){
@@ -40,6 +42,9 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
         boolean setTarget = event.getEventType().equals(KeyEvent.KEY_PRESSED);
         //System.out.println("Key : " + event.getEventType() + " , " + event.getCode());
 
+        shiftToggle = event.isShiftDown();
+        controlToggle = event.isControlDown();
+
         switch (event.getCode()){
             case W -> arrowKey[0] = setTarget;
             case S -> arrowKey[1] = setTarget;
@@ -52,6 +57,7 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
             case DIGIT2 -> spellKeyboardLayLoutHandler(event);
             case DIGIT3 -> spellKeyboardLayLoutHandler(event);
             case DIGIT4 -> spellKeyboardLayLoutHandler(event);
+
         }
 
         //System.out.println("Current key : " + currentKeyToggle);
@@ -67,11 +73,11 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
 
         if(isKeyPress && !cameraRotateState[arrayPos]){
             if(arrayPos == 0){
-                GameRender.setCameraTargetAngle(GameRender.getCameraTargetAngle() + 45);
+                GameRender.getInstance().setCameraTargetAngle(GameRender.getInstance().getCameraTargetAngle() + 45);
                 GameRender.goToNextRaces();
             }
             if(arrayPos == 1){
-                GameRender.setCameraTargetAngle(GameRender.getCameraTargetAngle() - 45);
+                GameRender.getInstance().setCameraTargetAngle(GameRender.getInstance().getCameraTargetAngle() - 45);
                 GameRender.goToPreviousRaces();
             }
         }
@@ -127,5 +133,12 @@ public class KeyInputControl implements EventHandler<KeyEvent> {
 
     public void setCurrentKeyToggle(KeyCode currentKeyToggle) {
         KeyInputControl.currentKeyToggle = currentKeyToggle;
+    }
+
+    public static boolean isShiftToggle() {
+        return shiftToggle;
+    }
+    public static boolean isControlToggle() {
+        return controlToggle;
     }
 }

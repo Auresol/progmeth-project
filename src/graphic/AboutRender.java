@@ -46,9 +46,9 @@ public class AboutRender extends StackPane {
 
         this.getChildren().add(backgroundView);
 
-        Text textLabel = new Text("Phudis Tansakul 6632168921\n Tst 6666666666\n");
+        Text textLabel = new Text("Phudis  Tansakul  6632168921\nSamyan  Warlord  6631352821\n");
         Font customFont = Font.loadFont(getClass().getClassLoader().getResource("ARCADECLASSIC.TTF").toExternalForm(), 100);
-        textLabel.setFill(Color.WHITE);
+        textLabel.setFill(Color.BLACK);
         textLabel.setFont(customFont);
         textLabel.setTextAlignment(TextAlignment.CENTER);
 

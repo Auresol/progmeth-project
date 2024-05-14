@@ -8,7 +8,7 @@ import util.Vector2D;
 import java.io.IOException;
 
 public class Player extends BaseUnit{
-    public static final String imageUrl = "player.png";
+    public static final String IMAGE_URL = "player.png";
     public static final double BASE_MAX_HEALTH = 100;
     public static final double BASE_SPEED = 100;
     public static final double BASE_ATTACK_FREQUENCY = 1;
@@ -16,7 +16,7 @@ public class Player extends BaseUnit{
     private static final double BASE_DAMAGE = 2;
 
     public Player(Vector2D position){
-        super("Player", imageUrl, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, 0,Races.ALL);
+        super("Player", IMAGE_URL, position, BASE_MAX_HEALTH, BASE_SPEED, IMAGE_SCALE, -1,-1,BASE_DAMAGE, 0,Races.ALL);
         updateSprite();
     }
 

@@ -19,8 +19,7 @@ public class Infestor extends BaseZergEnemy{
     private static final double IMAGE_SCALE = 1;
     private static final double ATTACK_BUFF = 1.05;
     private static final double SPEED_BUFF = 1.05;
-    private static final double SPEED_DEBUFF = 9.5;
-
+    private static final double SPEED_DEBUFF = 0.95;
 
     public Infestor(Vector2D position) {
         super("Infestor","Infestor.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.ZERG);

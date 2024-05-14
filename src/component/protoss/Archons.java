@@ -11,7 +11,7 @@ public class Archons extends BaseProtossEnemy{
     private static final double BASE_MIN_ATTACK_RANGE = 100;
     private static final double BASE_MAX_ATTACK_RANGE = 140;
     private static final double BASE_ATTACK_FREQUENCY = 1;
-    private static final double IMAGE_SCALE = 0.45;
+    private static final double IMAGE_SCALE = 2;
     private static final double BASE_SHIELD_COUNT = 3;
 
     public Archons(Vector2D position) {

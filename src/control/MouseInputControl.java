@@ -1,15 +1,12 @@
 package control;
 
-import component.spell.Fireball;
 import component.spell.Spell;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import util.Vector2D;
 
-import java.security.Key;
 import java.util.HashMap;
-import java.util.Vector;
 
 public class MouseInputControl implements EventHandler<MouseEvent> {
     //private static Vector2D currentMousePosition = Vector2D.ZERO;
@@ -19,6 +16,7 @@ public class MouseInputControl implements EventHandler<MouseEvent> {
         spellMapping.put(KeyCode.DIGIT1, Spell.FIREBALL);
         spellMapping.put(KeyCode.DIGIT2, Spell.LIGHTING_ORB);
         spellMapping.put(KeyCode.DIGIT3, Spell.TORNADO);
+        spellMapping.put(KeyCode.DIGIT4, Spell.GRAVITY_FIELD);
     };
 
     public static MouseInputControl getInstance(){
@@ -38,7 +36,9 @@ public class MouseInputControl implements EventHandler<MouseEvent> {
         Spell selectedSpell = spellMapping.get(KeyInputControl.getCurrentKeyToggle());
 
         if(selectedSpell != null){
-            GameControl.getInstance().useSpell(new Vector2D(x,y), selectedSpell);
+            GameControl.getInstance().selectSpell(new Vector2D(x,y), selectedSpell);
+        }else{
+            GameControl.getInstance().selectSpell(new Vector2D(x,y), Spell.BULLET);
         }
 
     }

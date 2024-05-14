@@ -21,7 +21,7 @@ import util.Goto;
 
 public class GameEndRender extends StackPane {
 
-    private static int score = 0;
+    private static Text scoreText;
     public static GameEndRender instance;
 
     public GameEndRender() {
@@ -37,22 +37,22 @@ public class GameEndRender extends StackPane {
         gameOverText.setPreserveRatio(true);
         gameOverText.setFitWidth(Config.width/2);
 
-        Text textLabel = new Text("Score  " + GameControl.getWave());
+        scoreText = new Text("Score  " + GameControl.getWave());
         Font customFont = Font.loadFont(getClass().getClassLoader().getResource("ARCADECLASSIC.TTF").toExternalForm(), 150);
-        textLabel.setFill(Color.WHITE);
-        textLabel.setFont(customFont);
-        textLabel.setTextAlignment(TextAlignment.CENTER);
+        scoreText.setFill(Color.WHITE);
+        scoreText.setFont(customFont);
+        scoreText.setTextAlignment(TextAlignment.CENTER);
 
         ImageView backButton = CreateButton.createButtonFromImage("ui/back01.png","ui/back02.png",0.3);
         backButton.setFitWidth(Config.width/4);
         backButton.setLayoutX(Config.width/2 - backButton.getFitWidth()/2);
         backButton.setLayoutY(2*Config.height/3 - 70);
 
-        this.getChildren().addAll(backgroundView, gameOverText, textLabel, backButton);
+        this.getChildren().addAll(backgroundView, gameOverText, scoreText, backButton);
         setAlignment(gameOverText, Pos.TOP_CENTER);
         gameOverText.setTranslateY(Config.height/7);
-        setAlignment(textLabel, Pos.CENTER);
-        textLabel.setTranslateY(-Config.height/20);
+        setAlignment(scoreText, Pos.CENTER);
+        scoreText.setTranslateY(-Config.height/20);
         setAlignment(backButton, Pos.BOTTOM_CENTER);
         backButton.setTranslateY(-Config.height/7);
 
@@ -72,12 +72,8 @@ public class GameEndRender extends StackPane {
 //        this.getChildren().add(gameOverText);
 //    }
 
-    public static int getScore() {
-        return score;
-    }
-
-    public static void setScore(int score) {
-        GameEndRender.score = score;
+    public void setScore(int score) {
+        scoreText.setText("Wave " + score);
     }
 
 }

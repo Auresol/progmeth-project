@@ -4,15 +4,25 @@ import component.*;
 import control.GameControl;
 import control.KeyInputControl;
 import control.MouseInputControl;
+import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import setting.Config;
 import util.Goto;
@@ -25,14 +35,42 @@ public class GameRender extends Pane {
     private static GameControl gameControl;
     private HashMap<Races, ArrayList<Base>> entities;
     private static GameRender instance;
-    private static final double cameraTurnSpeed = 10;
     private static double cameraAngle = 0;
     private static double cameraTargetAngle = 0;
     private Player player;
     private Crystal crystal;
+    private Text waveText;
     private static Races currentRace = Races.TERRAN;
+    private static ImageView terranBackground;
+    private static ImageView zergBackground;
+    private static ImageView protossBackground;
 
-    public GameRender() {}
+    public GameRender() {
+
+        terranBackground = new ImageView(new Image("ui/terran3.png"));
+        terranBackground.setPreserveRatio(true);
+        terranBackground.setFitWidth(Config.width);
+
+        zergBackground = new ImageView(new Image("ui/zerg3.png"));
+        zergBackground.setPreserveRatio(true);
+        zergBackground.setFitWidth(Config.width);
+
+        protossBackground = new ImageView(new Image("ui/protoss2.png"));
+        protossBackground.setPreserveRatio(true);
+        protossBackground.setFitWidth(Config.width);
+
+        waveText = new Text("Wave 1");
+        Font customFont = Font.loadFont(getClass().getClassLoader().getResource("ARCADECLASSIC.TTF").toExternalForm(), 250);
+        waveText.setFill(Color.WHITE);
+        waveText.setFont(customFont);
+        //waveText.setTextAlignment(TextAlignment.CENTER);
+        waveText.setLayoutX(Config.width/2 - 340);
+        waveText.setLayoutY(Config.height/2);
+
+        waveText.setVisible(true);
+
+        System.out.println(this.getChildren());
+    }
     public static GameRender getInstance(){
         if(instance == null){
             instance = new GameRender();
@@ -46,8 +84,34 @@ public class GameRender extends Pane {
 
         entities = gameControl.getEntities();
 
+        this.getChildren().add(terranBackground);
+        this.getChildren().add(zergBackground);
+        zergBackground.setVisible(false);
+        this.getChildren().add(protossBackground);
+        protossBackground.setVisible(false);
+
+        Label waveText = new Label("Wave 1");
+        Font customFont = Font.loadFont(getClass().getClassLoader().getResource("ARCADECLASSIC.TTF").toExternalForm(), 200);
+        //waveText.setPrefWidth(Config.width/4);
+        waveText.setStyle("-fx-text-fill: white");
+        waveText.setFont(customFont);
+        //waveText.setTextAlignment(TextAlignment.CENTER);
+
+//        waveText = new Text("Wave 1");
+//        Font customFont = Font.loadFont(getClass().getClassLoader().getResource("ARCADECLASSIC.TTF").toExternalForm(), 150);
+//        waveText.setFill(Color.WHITE);
+//        waveText.setFont(customFont);
+//        //waveText.setTextAlignment(TextAlignment.CENTER);
+//        waveText.setLayoutX(Config.width/2 + 100);
+//        waveText.setLayoutY(Config.height/2 + 100);
+//
+//        waveText.setVisible(true);
+
         this.getChildren().add(player.getRenderGroup());
         this.getChildren().add(crystal.getRenderGroup());
+        this.getChildren().add(waveText);
+
+        waveText.setVisible(false);
 
         //KeyInputControl keyInputControl = KeyInputControl.getInstance();
         //this.setOnKeyPressed(KeyInputControl.getInstance());
@@ -56,9 +120,7 @@ public class GameRender extends Pane {
         Thread thread = new Thread(() -> {
             try {
                 while (gameControl.isPlaying()) {
-                    Platform.runLater(() -> {
-                        update();
-                    });
+                    Platform.runLater(this::update);
                     Thread.sleep((long) (1000 * Config.timeStep));
                 }
                 //System.out.println("End of render");
@@ -67,17 +129,6 @@ public class GameRender extends Pane {
         });
 
         thread.start();
-    }
-
-    private void clear(){
-        player = null;
-        crystal = null;
-
-        for(Node node : this.getChildren()){
-            if(node instanceof Group){
-                this.getChildren().remove(node);
-            }
-        }
     }
 
     private void update(){
@@ -134,11 +185,11 @@ public class GameRender extends Pane {
 
     }
 
-    public static double getCameraTargetAngle() {
+    public double getCameraTargetAngle() {
         return cameraTargetAngle;
     }
 
-    public static void setCameraTargetAngle(double cameraTargetAngle) {
+    public void setCameraTargetAngle(double cameraTargetAngle) {
         GameRender.cameraTargetAngle = cameraTargetAngle;
     }
 
@@ -213,15 +264,35 @@ public class GameRender extends Pane {
 //        colorAdjust.setBrightness(0); // Set final brightness after animation
 //    }
 
-    private void displayNextWave(){
+    public void nextWave(){
+        //System.out.println(this.getChildren());
+        Platform.runLater(() -> {
+            this.getChildren().remove(waveText);
+            this.getChildren().add(waveText);
+        });
+        waveText.setVisible(true);
+        waveText.setText("Wave " + GameControl.getWave());
 
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                Platform.runLater(() -> {
+                    waveText.setVisible(false);
+                });
+            }catch (Exception e){}
+        });
+
+        thread.start();
     }
+
     public static void goToNextRaces(){
         switch (currentRace){
             case TERRAN -> setCurrentRace(Races.ZERG);
             case ZERG -> setCurrentRace(Races.PROTOSS);
             case PROTOSS -> setCurrentRace(Races.TERRAN);
         }
+
+        GameRender.getInstance().changeBackground();
     }
 
     public static void goToPreviousRaces(){
@@ -229,6 +300,20 @@ public class GameRender extends Pane {
             case TERRAN -> setCurrentRace(Races.PROTOSS);
             case ZERG -> setCurrentRace(Races.TERRAN);
             case PROTOSS -> setCurrentRace(Races.ZERG);
+        }
+
+        GameRender.getInstance().changeBackground();
+    }
+
+    private void changeBackground(){
+        terranBackground.setVisible(false);
+        zergBackground.setVisible(false);
+        protossBackground.setVisible(false);
+
+        switch (currentRace){
+            case TERRAN -> terranBackground.setVisible(true);
+            case ZERG -> zergBackground.setVisible(true);
+            case PROTOSS -> protossBackground.setVisible(true);
         }
     }
 

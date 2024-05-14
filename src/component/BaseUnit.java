@@ -34,7 +34,11 @@ public class BaseUnit extends Base{
         setAttackFrequency(attackFrequency);
 
         healthBar.setLayoutX(-25);
-        healthBar.setLayoutY(-this.getImage().getHeight()*getImageScale()/2 - 10);
+        if(getImageScale() > 1.5){
+            healthBar.setLayoutY(-this.getImage().getHeight()*getImageScale()/2 + 100);
+        }else{
+            healthBar.setLayoutY(-this.getImage().getHeight()*getImageScale()/2 - 10);
+        }
         getRenderGroup().getChildren().add(healthBar);
 
         String path = null;

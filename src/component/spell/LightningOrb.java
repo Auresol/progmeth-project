@@ -21,24 +21,19 @@ public class LightningOrb extends BaseSpell implements Upgradable{
     private static final double BASE_SPEED = 50;
     private static final double ZAP_RANGE = 200;
     private static final double IMAGE_SCALE = 0.3;
-    private static final String imageUrl = "lighting_orb.png";
+    private static double rangeBuff = 1;
+    private static final String IMAGE_URL = "lighting_orb.png";
 
     public LightningOrb(Vector2D position, Races races) {
         //Vector2D playerPosition = GameControl.getInstance().getPlayer().getPosition();
-        super("LightningOrb", imageUrl, GameControl.getInstance().getPlayer().getPosition(), BASE_SPEED,IMAGE_SCALE,races);
+        super("LightningOrb", IMAGE_URL, GameControl.getInstance().getPlayer().getPosition(), BASE_SPEED,IMAGE_SCALE,races);
         this.setDirection(position.subtract(GameControl.getInstance().getPlayer().getPosition()).getNormalize());
         cast();
         applyEffect();
     }
 
-    public LightningOrb(Vector2D position, Empower empower, Races races) {
-        super("LightningOrb", imageUrl, position, 0, IMAGE_SCALE,races);
-        cast();
-        upgrade(empower);
-    }
-
-    public void upgrade(Empower empower){
-        System.out.println("Upgrade");
+    public void upgrade(){
+        rangeBuff = 2.5;
     }
     public void cast() {
         ImageView lightingOrb = getImageView();
@@ -71,7 +66,7 @@ public class LightningOrb extends BaseSpell implements Upgradable{
                         for (Base entity : entities) {
                             if (entity instanceof BaseUnit) {
                                 BaseUnit castUnit = ((BaseUnit) entity);
-                                if (getPosition().subtract(entity.getPosition()).getSize() <= ZAP_RANGE) { //distanceTo not yet implement
+                                if (getPosition().subtract(entity.getPosition()).getSize() <= ZAP_RANGE * rangeBuff) { //distanceTo not yet implement
                                     castUnit.setHealth(castUnit.getHealth() - BASE_DAMAGE);
                                 }
                             }

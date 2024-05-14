@@ -14,30 +14,22 @@ import setting.Config;
 import util.Vector2D;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
-public class Tornado extends BaseSpell implements Upgradable {
+public class Tornado extends BaseSpell {
     private static final double BASE_DAMAGE = 0.5;
     private static final double BASE_CAST_TIME = 2;
     private static final double BASE_RADIUS = 500;
     private static final double BASE_PULL_FORCE = 100;
     private static final double IMAGE_SCALE = 0.05;
     private static final double BASE_SPELL_TIME = 10;
-    private static String imageUrl = "tornado.png";
+    private static String IMAGE_URL = "tornado.png";
     public Tornado(Vector2D position, Races races) {
-        super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
+        super("Tornado",IMAGE_URL,position,0,IMAGE_SCALE,races);
         cast();
         applyEffect();
         selfDestroy();
-    }
-    public Tornado(Vector2D position, Empower empower,Races races) {
-        super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
-        cast();
-        upgrade(empower);
-        selfDestroy();
-    }
-    public void upgrade(Empower empower){
-        System.out.println("Upgrade");
     }
 
     public void cast() {
@@ -70,6 +62,7 @@ public class Tornado extends BaseSpell implements Upgradable {
     }
 
     public void applyEffect(){
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
