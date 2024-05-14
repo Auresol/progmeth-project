@@ -23,7 +23,7 @@ public class Infestor extends BaseZergEnemy{
 
 
     public Infestor(Vector2D position) {
-        super("Infestor","Infestor.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
+        super("Infestor","Infestor.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.ZERG);
         setTarget(GameControl.getInstance().getPlayer());
         applyEffect();
     }

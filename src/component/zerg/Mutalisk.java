@@ -20,7 +20,7 @@ public class Mutalisk extends BaseZergEnemy{
     private static final double IMAGE_SCALE = 2.1;
 
     public Mutalisk(Vector2D position) {
-        super("Mutalisk","Mutalisk.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN);
+        super("Mutalisk","Mutalisk.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.ZERG);
         setTarget(GameControl.getInstance().getPlayer());
         applyEffect();
     }

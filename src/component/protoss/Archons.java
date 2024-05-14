@@ -15,7 +15,7 @@ public class Archons extends BaseProtossEnemy{
     private static final double BASE_SHIELD_COUNT = 3;
 
     public Archons(Vector2D position) {
-        super("Archons","Archons.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN, BASE_SHIELD_COUNT);
+        super("Archons","Archons.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.PROTOSS, BASE_SHIELD_COUNT);
         setTarget(GameControl.getInstance().getCrystal());
     }
 }

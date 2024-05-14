@@ -3,6 +3,7 @@ package control;
 import com.sun.webkit.ThemeClient;
 import component.*;
 
+import component.protoss.Tempest;
 import component.zerg.Baneling;
 import component.terran.Medic;
 import component.terran.Solider;
@@ -13,17 +14,16 @@ import util.Vector2D;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 // All key event is
 public class GameControl {
     private static GameControl instance;
-    private KeyInputControl keyInputControl;
     private Player player;
     private Crystal crystal;
     private BaseSpell selectedSpell;
     private HashMap<Races, ArrayList<Base>> entities;
+    private boolean playing = false;
+    private boolean lose = false;
 
     public GameControl() {
         this.player = new Player(Vector2D.MID_SCREEN);
@@ -43,9 +43,11 @@ public class GameControl {
     }
 
     public void startGame(){
+        playing = true;
+        lose = false;
         Thread thread = new Thread(() -> {
             try {
-                while(true) {
+                while(playing) {
                     //System.out.println("Update");
                     Vector2D initialPosition = new Vector2D();
                     Solider solider = new Solider(initialPosition);
@@ -68,6 +70,12 @@ public class GameControl {
                     Baneling baneling = new Baneling(initialPosition);
                     medic.setDirection(crystal.getPosition().subtract(initialPosition));
                     addEntity(baneling);
+                    baneling.updateSprite();
+
+                    initialPosition = new Vector2D();
+                    Tempest tempest = new Tempest(initialPosition);
+                    //medic.setDirection(crystal.getPosition().subtract(initialPosition));
+                    addEntity(tempest);
                     baneling.updateSprite();
 
                     Thread.sleep(2000);
@@ -93,11 +101,6 @@ public class GameControl {
             case TORNADO -> addEntity(new Tornado(mousePosition, GameRender.getCurrentRace()));
             case LIGHTING_ORB -> addEntity(new LightningOrb(mousePosition, GameRender.getCurrentRace()));
         }
-//
-//        selectedSpell = new Fireball(mousePosition, GameRender.getCurrentRace());
-//        //selectedSpell.setDirection(mousePosition.subtract(getPlayer().getPosition()).getNormalize());
-//        addEntity(selectedSpell);
-//        selectedSpell.cast();
     }
 
 
@@ -144,4 +147,11 @@ public class GameControl {
         this.player = player;
     }
 
+    public boolean isPlaying() {
+        return playing;
+    }
+
+    public void setPlaying(boolean playing) {
+        this.playing = playing;
+    }
 }

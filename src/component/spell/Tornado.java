@@ -22,17 +22,19 @@ public class Tornado extends BaseSpell implements Upgradable {
     private static final double BASE_RADIUS = 500;
     private static final double BASE_PULL_FORCE = 100;
     private static final double IMAGE_SCALE = 0.05;
+    private static final double BASE_SPELL_TIME = 10;
     private static String imageUrl = "tornado.png";
     public Tornado(Vector2D position, Races races) {
         super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
         cast();
         applyEffect();
+        selfDestroy();
     }
     public Tornado(Vector2D position, Empower empower,Races races) {
         super("Tornado",imageUrl,position,0,IMAGE_SCALE,races);
         cast();
         upgrade(empower);
-
+        selfDestroy();
     }
     public void upgrade(Empower empower){
         System.out.println("Upgrade");
@@ -71,9 +73,8 @@ public class Tornado extends BaseSpell implements Upgradable {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true) {
+                while(!isDestroyed()) {
                     try {
-
                         ArrayList<Base> entities = GameControl.getInstance().getEntities().get(getRaces());
                         for (int i = 0;i < entities.size();i++) {
                             Base entity = entities.get(i);
@@ -96,6 +97,24 @@ public class Tornado extends BaseSpell implements Upgradable {
 
         thread.start();
 
+    }
+
+    private void selfDestroy(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    try {
+                        Thread.sleep((long) (BASE_SPELL_TIME * 1000));
+                        setDestroyed(true);
+                        selfDelete();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
 

@@ -6,21 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/glow.png" beforeDir="false" afterPath="$PROJECT_DIR$/res/glow_red.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/start.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Base.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Base.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/BaseUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/BaseUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Fireball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Fireball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/protoss/Archons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Archons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/protoss/Disruptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Disruptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/protoss/Tempest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Tempest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/protoss/Zealot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Zealot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/spell/Tornado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Tornado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/terran/Solider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/terran/Solider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/zerg/Baneling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Baneling.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalish.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/zerg/Infestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Infestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Mutalisk.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/zerg/Zergling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Zergling.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control/KeyInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/KeyInputControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/MouseInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MouseInputControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/MainControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MainControl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphic/GameRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/GameRender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphic/MainRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/MainRender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphic/MainRenderFXMLControl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.puml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

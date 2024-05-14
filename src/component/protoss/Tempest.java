@@ -16,13 +16,13 @@ public class Tempest extends BaseProtossEnemy{
     private double life = 1;
 
     public Tempest(Vector2D position) {
-        super("Tempest","Tempest.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN, BASE_SHIELD_COUNT);
+        super("Tempest","Tempest.gif", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.PROTOSS, BASE_SHIELD_COUNT);
         setTarget(GameControl.getInstance().getCrystal());
         applyEffect();
     }
 
     public Tempest(Vector2D position, double life) {
-        super("Tempest","Tempest.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.TERRAN, BASE_SHIELD_COUNT);
+        super("Tempest","Tempest.png", position, BASE_MAX_HEALTH,BASE_SPEED, IMAGE_SCALE, BASE_MIN_ATTACK_RANGE, BASE_MAX_ATTACK_RANGE, BASE_DAMAGE, BASE_ATTACK_FREQUENCY, Races.PROTOSS, BASE_SHIELD_COUNT);
         setTarget(GameControl.getInstance().getCrystal());
         setLife(life);
         applyEffect();
