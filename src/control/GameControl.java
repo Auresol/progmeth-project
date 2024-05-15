@@ -94,7 +94,7 @@ public class GameControl {
         entities.get(Races.ALL).add(player);
         entities.get(Races.ALL).add(crystal);
 
-        mediaPlayer = new MediaPlayer(new Media(Paths.get("res/sound/backgroundMusic.mp3").toUri().toString()));
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/sound/backgroundMusic.mp3").toExternalForm()));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         GameControl.playBackgroundMusic();
         

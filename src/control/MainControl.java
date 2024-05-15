@@ -47,7 +47,7 @@ public class MainControl {
 
         stage.setScene(scene);
         //stage.setTitle("My Game - Home Screen");
-        mediaPlayer = new MediaPlayer(new Media(Paths.get("res/sound/startMenu.mp3").toUri().toString()));
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/sound/startMenu.mp3").toExternalForm()));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         playBackgroundMusic();
         stage.show();

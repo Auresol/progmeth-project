@@ -5,53 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="353657b0-4dee-4994-9f67-dc2288ed037d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/res/Bullet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/GravityField.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/protoss2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/terran.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/terran2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/terran3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/zerg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/zerg2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/ui/zerg3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Units.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/spell/Bullet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/spell/GravityField.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/component.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/component.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/control.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/control.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphic.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/BaseUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/BaseUnit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Crystal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Crystal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Archons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Archons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/BaseProtossEnemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/BaseProtossEnemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Tempest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Tempest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/protoss/Zealot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/protoss/Zealot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Empower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Fireball.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Fireball.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/LightningOrb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Tornado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Tornado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/spell/Upgradable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/spell/Upgradable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/zerg/Infestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/zerg/Infestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheDefenderOfTheMultiverse.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/control/GameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/KeyInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/KeyInputControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/MouseInputControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MouseInputControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphic/AboutRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/AboutRender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphic/GameEndRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/GameEndRender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphic/GameRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphic/GameRender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setting/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/setting/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Goto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Goto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/Vector2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/Vector2D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tset.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tset.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tset.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/GameEndControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/GameEndControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/MainControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/MainControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +28,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,

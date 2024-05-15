@@ -32,7 +32,7 @@ public class GameEndControl {
 
     public void load(Stage stage){
 
-        mediaPlayer = new MediaPlayer(new Media(Paths.get("res/sound/gameEnd.mp3").toUri().toString()));
+        mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/sound/gameEnd.mp3").toExternalForm()));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         GameEndControl.playBackgroundMusic();
 
